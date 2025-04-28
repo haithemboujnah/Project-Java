@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+
+<?import java.net.URL?>
+<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controllers.SplashController"
+      alignment="CENTER" spacing="20" styleClass="splash-root">
+
+    <stylesheets>
+        <URL value="@../resources/styles.css" />
+    </stylesheets>
+
+    <ImageView>
+        <Image url="@../resources/hangman-icon.png" />
+    </ImageView>
+
+    <Label text="Le Pendu" styleClass="splash-title"/>
+
+    <Label text="Devinez le mot avant que le bonhomme ne soit pendu!"
+           styleClass="splash-description"
+           wrapText="true"
+           maxWidth="300"/>
+
+    <VBox alignment="CENTER" spacing="10" styleClass="progress-container">
+        <Label text="Chargement..." styleClass="progress-label"/>
+        <ProgressBar fx:id="progressBar" minWidth="200"/>
+        <Label fx:id="progressText" styleClass="progress-text"/>
+    </VBox>
+
+    <Button fx:id="startButton" text="Commencer"
+            styleClass="start-button"
+            visible="false"
+            onAction="#handleStartGame"/>
+
+</VBox>
