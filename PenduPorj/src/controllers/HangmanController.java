@@ -1,12 +1,16 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import models.Game;
 import models.WordDictionary;
 
@@ -18,6 +22,7 @@ import javafx.scene.canvas.GraphicsContext;
 public class HangmanController {
     private Game game;
     private WordDictionary dictionary;
+    private String currentTheme;
 
     @FXML private Label wordLabel;
     @FXML private Label attemptsLabel;
@@ -51,14 +56,31 @@ public class HangmanController {
         }
     }
 
+
+    public void setTheme(String theme, WordDictionary dictionary) {
+        this.currentTheme = theme;
+        this.dictionary = dictionary;
+        startNewGame(); // Start game immediately with the selected theme
+    }
+
+
     private void startNewGame() {
         if (dictionary == null) {
             showAlert("Error", "Dictionary not initialized");
             return;
         }
-        game = new Game(dictionary.getRandomWord());
+
+        if (currentTheme == null) {
+            // Default to first theme if none selected
+            currentTheme = dictionary.getAvailableThemes().iterator().next();
+        }
+
+        game = new Game(dictionary.getRandomWord(currentTheme));
         updateUI();
         setupKeyboard();
+
+        // Show the current theme to the player
+        wordLabel.setText("Thème: " + currentTheme + "\n" + game.getCurrentState());
     }
 
     private void drawHangman(int wrongAttempts) {
@@ -80,9 +102,9 @@ public class HangmanController {
         if (wrongAttempts > 6) gc.strokeLine(95, 45, 100, 50);   // Left eye
         if (wrongAttempts > 7) gc.strokeLine(105, 45, 100, 50);   // Right eye
     }
-
     private void updateUI() {
-        wordLabel.setText(game.getCurrentState());
+        wordLabel.setText("Thème: " + currentTheme + "\n" + game.getCurrentState());
+
         attemptsLabel.setText("Essais restants: " + game.getRemainingAttempts());
         guessedLettersLabel.setText("Lettres essayées: " + game.getGuessedLetters().toString());
         drawHangman(8 - game.getRemainingAttempts());
@@ -145,5 +167,23 @@ public class HangmanController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    @FXML
+    private void handleBackToThemes() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/theme-selection.fxml"));
+            Parent root = loader.load();
+
+            // Pass the dictionary back to maintain state
+            ThemeSelectionController controller = loader.getController();
+            controller.setDictionary(dictionary);
+
+            Stage stage = (Stage) keyboardGrid.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

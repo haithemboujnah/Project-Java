@@ -1,34 +1,45 @@
 package models;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class WordDictionary {
-    private List<String> words;
+    private Map<String, List<String>> themedWords;
     private Random random;
 
     public WordDictionary(InputStream wordStream) throws IOException {
-        this.words = new ArrayList<>();
+        this.themedWords = new HashMap<>();
         this.random = new Random();
-
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(wordStream))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                words.add(line.trim());
-            }
-        }
+        loadThemes(wordStream);
     }
 
-    public String getRandomWord() {
+    private void loadThemes(InputStream wordStream) throws IOException {
+        Scanner scanner = new Scanner(wordStream);
+        String currentTheme = null;
+
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine().trim();
+            if (line.startsWith("[") && line.endsWith("]")) {
+                currentTheme = line.substring(1, line.length() - 1);
+                themedWords.put(currentTheme, new ArrayList<>());
+
+            } else if (currentTheme != null && !line.isEmpty()) {
+                themedWords.get(currentTheme).add(line);
+            }
+        }
+        scanner.close();
+    }
+
+    public String getRandomWord(String theme) {
+        List<String> words = themedWords.get(theme);
+        if (words == null || words.isEmpty()) {
+            throw new IllegalArgumentException("Theme not found or empty: " + theme);
+        }
         return words.get(random.nextInt(words.size())).toUpperCase();
     }
 
-    public Random getRandom() {
-        return random;
+    public Set<String> getAvailableThemes() {
+        return themedWords.keySet();
     }
 }

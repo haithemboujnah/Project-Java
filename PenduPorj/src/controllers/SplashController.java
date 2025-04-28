@@ -29,7 +29,7 @@ public class SplashController {
         // Create loading animation
         loadingTimeline = new Timeline(
                 new KeyFrame(Duration.millis(100), event -> {
-                    progress += 0.02;
+                    progress += 0.05;
                     if (progress >= 1.0) {
                         progress = 1.0;
                         loadingTimeline.stop();
@@ -51,11 +51,12 @@ public class SplashController {
     @FXML
     private void handleStartGame() {
         try {
-            // Load main game scene
-            Parent root = FXMLLoader.load(getClass().getResource("../views/hangman.fxml"));
+            // Load theme selection directly
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/theme-selection.fxml"));
+            Parent root = loader.load();
+
             Stage stage = (Stage) startButton.getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.setTitle("Le Pendu");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

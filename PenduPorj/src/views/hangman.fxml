@@ -3,18 +3,31 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
 <?import java.net.URL?>
 <?import javafx.scene.canvas.Canvas?>
+
 <VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="controllers.HangmanController"
-      spacing="20" alignment="CENTER" styleClass="root">
+      spacing="20" alignment="CENTER" styleClass="root"
+      prefWidth="700" prefHeight="600">
 
     <stylesheets>
         <URL value="@../resources/styles.css" />
     </stylesheets>
 
-    <Label text="Le Pendu" styleClass="title"/>
+    <!-- Header with back button and title -->
+    <HBox alignment="CENTER_LEFT" spacing="20" styleClass="header-box">
+        <Button onAction="#handleBackToThemes" styleClass="back-button">
+            <graphic>
+                <ImageView fitWidth="30" fitHeight="30">
+                    <Image url="@../resources/back-icon.jpg" />
+                </ImageView>
+            </graphic>
+        </Button>
+        <Label text="Le Pendu" styleClass="title"/>
+    </HBox>
 
     <HBox alignment="CENTER" spacing="40">
         <!-- Hangman drawing area -->
@@ -31,10 +44,9 @@
     </HBox>
 
     <!-- French AZERTY keyboard -->
-    <GridPane fx:id="keyboardGrid" alignment="CENTER" hgap="10" vgap="10">
+    <GridPane fx:id="keyboardGrid" alignment="CENTER" hgap="10" vgap="10"/>
 
-    </GridPane>
-
-    <Button text="Nouvelle Partie" minWidth="200" minHeight="40" maxWidth="200" maxHeight="40" onAction="#handleNewGame" styleClass="new-game-btn"/>
+    <Button text="Nouvelle Partie" minWidth="200" minHeight="40" maxWidth="200" maxHeight="40"
+            onAction="#handleNewGame" styleClass="new-game-btn"/>
 
 </VBox>

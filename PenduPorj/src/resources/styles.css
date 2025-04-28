@@ -1,5 +1,5 @@
 .root {
-    -fx-background-color: #f0f0f0;
+    -fx-background-color: linear-gradient(to bottom, #f5f7fa, #c3cfe2);
     -fx-padding: 20;
 }
 
@@ -66,10 +66,12 @@
 }
 
 .splash-description {
-    -fx-font-size: 16px;
-    -fx-text-fill: #ecf0f1;
+    -fx-font-size: 17px;
+    -fx-text-fill: #8de8ff;
     -fx-text-alignment: center;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 1);
+    -fx-font-family: "monospace";
+    -fx-font-weight: bold;
 }
 
 .progress-container {
@@ -88,6 +90,12 @@
     -fx-text-fill: #bdc3c7;
 }
 
+.progress-bar {
+    -fx-background-color: #ecf0f1;
+    -fx-background-radius: 125;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 1);
+}
+
 .start-button {
     -fx-font-size: 18px;
     -fx-font-weight: bold;
@@ -104,4 +112,184 @@
 
 .start-button:pressed {
     -fx-background-color: #a53125;
+}
+
+
+/* Theme Selection Styles */
+.theme-selection-root {
+    -fx-background-color: #34495e;
+    -fx-padding: 40;
+}
+
+.theme-selection-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ecf0f1;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 2);
+}
+
+.theme-button {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-padding: 15 40;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5, 0, 0, 2);
+}
+
+.theme-button:hover {
+    -fx-background-color: #2980b9;
+}
+
+.theme-button:pressed {
+    -fx-background-color: #2472a4;
+}
+
+/* Hangman theme indicator */
+.word-display {
+    -fx-font-size: 24px;
+    -fx-font-family: monospace;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-alignment: center;
+}
+
+/* Theme Selection Styles */
+.theme-selection-root {
+    -fx-background-color: linear-gradient(to bottom, #f5f7fa, #c3cfe2);
+    -fx-padding: 30;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
+}
+
+.theme-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-effect: dropshadow(three-pass-box, rgba(255,255,255,0.5), 0, 1, 1, 0);
+}
+
+.theme-button {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-padding: 20 10;
+    -fx-min-width: 150;
+    -fx-min-height: 80;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);
+    -fx-background-color:
+            linear-gradient(to bottom, #6a11cb, #2575fc);
+    -fx-cursor: hand;
+}
+
+.theme-button:hover {
+    -fx-background-color:
+            linear-gradient(to bottom, #2575fc, #6a11cb);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 8, 0, 0, 3);
+}
+
+/* Individual theme colors */
+#schoolButton {
+    -fx-background-color: linear-gradient(to bottom, #11998e, #38ef7d);
+}
+#animalsButton {
+    -fx-background-color: linear-gradient(to bottom, #f46b45, #eea849);
+}
+#jobsButton {
+    -fx-background-color: linear-gradient(to bottom, #8e2de2, #4a00e0);
+}
+#vehiclesButton {
+    -fx-background-color: linear-gradient(to bottom, #f857a6, #ff5858);
+}
+#techButton {
+    -fx-background-color: linear-gradient(to bottom, #00c6ff, #0072ff);
+}
+#bodyButton {
+    -fx-background-color: linear-gradient(to bottom, #a8ff78, #78ffd6);
+}
+#countriesButton {
+    -fx-background-color: linear-gradient(to bottom, #ff416c, #ff4b2b);
+}
+#fruitsButton {
+    -fx-background-color: linear-gradient(to bottom, #7b4397, #dc2430);
+}
+#sportsButton {
+    -fx-background-color: linear-gradient(to bottom, #43cea2, #185a9d);
+}
+
+/* Theme Selection Improvements */
+.theme-selection-root {
+    -fx-background-color: linear-gradient(to bottom, #f5f7fa, #c3cfe2);
+    -fx-padding: 30;
+}
+
+.transparent-scroll {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 10;
+}
+
+.transparent-scroll .viewport {
+    -fx-background-color: transparent;
+}
+
+.theme-grid {
+    -fx-padding: 20;
+}
+
+.theme-button {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-padding: 20 10;
+    -fx-min-width: 150;
+    -fx-min-height: 80;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);
+    -fx-cursor: hand;
+}
+
+/* Ensure all buttons are visible */
+#schoolButton, #animalsButton, #jobsButton,
+#vehiclesButton, #techButton, #bodyButton,
+#countriesButton, #fruitsButton, #sportsButton {
+    -fx-opacity: 1;
+    -fx-visible: true;
+}
+
+/* Back button styles */
+.back-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 5;
+    -fx-cursor: hand;
+}
+
+.back-button:hover {
+    -fx-background-color: transparent;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.header-box {
+    -fx-alignment: center-left;
+    -fx-padding: 0 0 10 0;
+}
+
+.word-display {
+
+    -fx-font-family: Serif;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-alignment: center;
+}
+
+.theme-label {
+
+    -fx-font-weight: bold;
+    -fx-text-fill: #3498db;
+    -fx-padding: 0 0 10 0;
 }
