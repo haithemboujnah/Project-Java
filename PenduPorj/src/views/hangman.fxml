@@ -22,7 +22,7 @@
         <Button onAction="#handleBackToThemes" styleClass="back-button">
             <graphic>
                 <ImageView fitWidth="30" fitHeight="30">
-                    <Image url="@../resources/back-icon.jpg" />
+                    <Image url="@../resources/Images/back-icon.jpg" />
                 </ImageView>
             </graphic>
         </Button>

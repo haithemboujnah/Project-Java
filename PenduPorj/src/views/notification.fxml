@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+      fx:id="notificationBox" alignment="CENTER" spacing="20"
+      style="-fx-background-color: linear-gradient(to bottom, #6a11cb, #2575fc);
+             -fx-background-radius: 15; -fx-padding: 30;
+             -fx-border-radius: 15; -fx-border-color: white; -fx-border-width: 2;">
+
+    <ImageView fx:id="notificationIcon" fitWidth="80" fitHeight="80"/>
+    <Label fx:id="notificationTitle" style="-fx-font-size: 24px; -fx-text-fill: white; -fx-font-weight: bold;"/>
+    <Label fx:id="notificationMessage" style="-fx-font-size: 16px; -fx-text-fill: white; -fx-wrap-text: true;"
+           maxWidth="350"/>
+    <Button fx:id="notificationButton" text="Continuer"
+            style="-fx-background-color: white; -fx-text-fill: #6a11cb;
+                  -fx-font-weight: bold; -fx-font-size: 14px;
+                  -fx-padding: 8 20; -fx-background-radius: 5;"/>
+</VBox>

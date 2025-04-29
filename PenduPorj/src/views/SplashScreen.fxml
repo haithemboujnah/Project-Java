@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 
 <?import java.net.URL?>
@@ -16,7 +15,7 @@
     </stylesheets>
 
     <ImageView>
-        <Image url="@../resources/hangman-icon.png" />
+        <Image url="@../resources/Images/hangman-icon.png" />
     </ImageView>
 
     <Label text="Le Pendu" styleClass="splash-title"/>

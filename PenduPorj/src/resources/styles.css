@@ -54,7 +54,7 @@
 .splash-root {
     -fx-background-color: #2c3e50;
     -fx-padding: 40;
-    -fx-background-image: url("../resources/background.png");
+    -fx-background-image: url("../resources/Images/background.png");
     -fx-background-size: cover;
 }
 
@@ -183,11 +183,43 @@
     -fx-cursor: hand;
 }
 
+/* Theme Selection Styles */
+.theme-selection-root {
+    -fx-background-color: #f8f9fa;
+    -fx-padding: 20;
+}
+
+.theme-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #343a40;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);
+}
+
+.theme-grid {
+    -fx-padding: 20;
+}
+
+.theme-button {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #495057;
+    -fx-background-color: #e9ecef;
+    -fx-background-radius: 10;
+    -fx-padding: 20 15;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+    -fx-border-color: #dee2e6;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);
+    -fx-cursor: hand;
+    -fx-min-width: 150;
+    -fx-min-height: 150;
+    -fx-alignment: center;
+}
+
 .theme-button:hover {
-    -fx-background-color:
-            linear-gradient(to bottom, #2575fc, #6a11cb);
-    -fx-scale-x: 1.05;
-    -fx-scale-y: 1.05;
+    -fx-background-color: linear-gradient(to bottom, #2575fc, #6a11cb);
+    -fx-text-fill: white;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 8, 0, 0, 3);
 }
 
@@ -199,7 +231,7 @@
     -fx-background-color: linear-gradient(to bottom, #f46b45, #eea849);
 }
 #jobsButton {
-    -fx-background-color: linear-gradient(to bottom, #8e2de2, #4a00e0);
+    -fx-background-color: linear-gradient(to bottom, #ff416c, #ff4b2b);
 }
 #vehiclesButton {
     -fx-background-color: linear-gradient(to bottom, #f857a6, #ff5858);
@@ -208,11 +240,12 @@
     -fx-background-color: linear-gradient(to bottom, #00c6ff, #0072ff);
 }
 #bodyButton {
-    -fx-background-color: linear-gradient(to bottom, #a8ff78, #78ffd6);
+    -fx-background-color: linear-gradient(to bottom, #82c55d, #61c89d);
 }
 #countriesButton {
-    -fx-background-color: linear-gradient(to bottom, #ff416c, #ff4b2b);
+    -fx-background-color: linear-gradient(to bottom, #8e2de2, #4a00e0);
 }
+
 #fruitsButton {
     -fx-background-color: linear-gradient(to bottom, #7b4397, #dc2430);
 }
@@ -292,4 +325,154 @@
     -fx-font-weight: bold;
     -fx-text-fill: #3498db;
     -fx-padding: 0 0 10 0;
+}
+
+/* Add these to your styles.css */
+.stack-pane {
+    -fx-backface-visibility: hidden;
+    -fx-perspective: 800px;
+}
+
+.image-view, .button {
+    -fx-backface-visibility: hidden;
+}
+
+.confetti {
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 2, 0, 0, 0);
+}
+
+.hangman-canvas {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);
+}
+
+/* Style pour les alertes customisées */
+.custom-alert {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #3498db;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);
+}
+
+.custom-alert .button-bar .button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 3px;
+    -fx-padding: 5 15;
+}
+
+.custom-alert .button-bar .button:hover {
+    -fx-background-color: #2980b9;
+}
+
+/* Style spécifique pour les victoires */
+.alert-success {
+    -fx-border-color: #2ecc71;
+}
+
+.alert-success .button-bar .button {
+    -fx-background-color: #2ecc71;
+}
+
+.alert-success .button-bar .button:hover {
+    -fx-background-color: #27ae60;
+}
+
+/* Style spécifique pour les défaites */
+.alert-danger {
+    -fx-border-color: #e74c3c;
+}
+
+.alert-danger .button-bar .button {
+    -fx-background-color: #e74c3c;
+}
+
+.alert-danger .button-bar .button:hover {
+    -fx-background-color: #c0392b;
+}
+
+/* Base Alert Styles */
+.dialog-pane {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+/* Win Alert Specific */
+.win-alert {
+    -fx-effect: dropshadow(three-pass-box, rgba(76,175,80,0.5), 20, 0, 0, 0);
+}
+
+.win-alert .button-bar .button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-padding: 8 25;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1);
+}
+
+.win-alert .button-bar .button:hover {
+    -fx-background-color: #43A047;
+}
+
+/* Lose Alert Specific */
+.lose-alert {
+    -fx-effect: dropshadow(three-pass-box, rgba(244,67,54,0.5), 20, 0, 0, 0);
+}
+
+.lose-alert .button-bar .button {
+    -fx-background-color: #f44336;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-padding: 8 25;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1);
+}
+
+.lose-alert .button-bar .button:hover {
+    -fx-background-color: #E53935;
+}
+
+/* Center the button */
+.dialog-pane .button-bar {
+    -fx-alignment: center;
+    -fx-padding: 20;
+}
+
+/* Center the button bar */
+.dialog-pane > .button-bar > .container {
+    -fx-alignment: center;
+}
+
+/* Style the button */
+.dialog-pane .button {
+    -fx-padding: 8 25;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-min-width: 120px;
+}
+
+/* Win alert button */
+.win-alert .button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-alignment: center;
+}
+
+/* Lose alert button */
+.lose-alert .button {
+    -fx-background-color: #f44336;
+    -fx-text-fill: white;
+    -fx-alignment: center;
+}
+
+/* Button hover effects */
+.dialog-pane .button:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 1);
 }

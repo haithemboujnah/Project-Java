@@ -17,13 +17,13 @@
     </stylesheets>
 
     <ImageView fitWidth="150" fitHeight="150" preserveRatio="true">
-        <Image url="@../resources/themeicon.png" />
+        <Image url="@../resources/Images/themeicon.png" />
     </ImageView>
 
     <Label text="Choisissez un thème" styleClass="theme-title"/>
 
 
-        <GridPane alignment="CENTER" hgap="20" vgap="20" styleClass="theme-grid">
+    <GridPane fx:id="themeGrid" alignment="CENTER" hgap="20" vgap="20" styleClass="theme-grid">
             <columnConstraints>
                 <ColumnConstraints percentWidth="33"/>
                 <ColumnConstraints percentWidth="33"/>
