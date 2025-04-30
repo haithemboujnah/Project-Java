@@ -2,6 +2,12 @@
   <library name="lib">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/../../../../../openjfx-21.0.2_windows-x64_bin-sdk/javafx-sdk-21.0.2/lib" />
+      <root url="jar://$USER_HOME$/Downloads/bson-4.11.1.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/mongodb-driver-sync-4.11.1.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/mongodb-driver-core-4.11.1.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/slf4j-simple-2.0.16.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/slf4j-simple-2.0.12.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/slf4j-api-2.0.12.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

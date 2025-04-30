@@ -52,7 +52,7 @@ public class SplashController {
     private void handleStartGame() {
         try {
             // Load theme selection directly
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/theme-selection.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/LoginScreen.fxml"));
             Parent root = loader.load();
 
             Stage stage = (Stage) startButton.getScene().getWindow();

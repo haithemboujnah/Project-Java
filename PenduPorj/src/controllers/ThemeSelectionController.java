@@ -1,11 +1,13 @@
 package controllers;
 
+import Services.SessionManager;
 import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -13,6 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import models.User;
 import models.WordDictionary;
 
 import java.io.IOException;
@@ -27,9 +30,12 @@ public class ThemeSelectionController {
             countriesButton, fruitsButton, sportsButton;
 
     @FXML private GridPane themeGrid;
+    @FXML private Label userInfoLabel;
+    private User currentUser;
 
     private WordDictionary dictionary;
     private Map<String, Image> themeImages = new HashMap<>();
+    private SessionManager sessionManager = SessionManager.getInstance();
 
     public void initialize() {
         try {
@@ -171,6 +177,37 @@ public class ThemeSelectionController {
         }
     }
 
+    // Update setCurrentUser method
+    public void setCurrentUser(User user) {
+        sessionManager.setCurrentUser(user);
+        updateUserInfo();
+    }
+
+    // Update updateUserInfo method
+    public void updateUserInfo() {
+        if (sessionManager.isLoggedIn()) {
+            User user = sessionManager.getCurrentUser();
+            userInfoLabel.setText(String.format("%s | %d 💰 | %d ✅ | %d ❌",
+                    user.getUsername(),
+                    user.getCoins(),
+                    user.getWins(),
+                    user.getLosses()));
+        }
+    }
+
+    @FXML
+    private void handleLogout() {
+        sessionManager.logout();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../views/LoginScreen.fxml"));
+            Stage stage = (Stage) themeGrid.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     private void startGame(String theme) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/hangman.fxml"));
@@ -178,6 +215,9 @@ public class ThemeSelectionController {
 
             HangmanController controller = loader.getController();
             controller.setTheme(theme, dictionary);
+
+            // Update user info in the Hangman controller
+            controller.updateUserInfo();
 
             Stage stage = (Stage) themeGrid.getScene().getWindow();
             stage.setScene(new Scene(root));
