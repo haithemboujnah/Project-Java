@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+
+<?import java.net.URL?>
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controllers.DifficultySelectionController"
+      alignment="CENTER" spacing="20" styleClass="difficulty-selection-root"
+      prefWidth="400" prefHeight="500">
+
+    <stylesheets>
+        <URL value="@../resources/styles.css" />
+    </stylesheets>
+
+    <ImageView fitWidth="150" fitHeight="150" preserveRatio="true">
+        <Image url="@../resources/Images/difficulty-icon.png" />
+    </ImageView>
+
+    <Label text="Choisissez la difficulté" styleClass="difficulty-title"/>
+
+    <VBox fx:id="difficultyContainer" alignment="CENTER" spacing="15"/>
+
+</VBox>

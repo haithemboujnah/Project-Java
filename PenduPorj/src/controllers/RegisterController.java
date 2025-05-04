@@ -36,7 +36,6 @@ public class RegisterController {
 
     private void animateForm() {
         // Initial state
-        formContainer.setOpacity(0);
         logoImageView.setOpacity(0);
 
         // Logo animation

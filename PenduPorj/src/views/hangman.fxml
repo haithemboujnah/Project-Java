@@ -27,7 +27,6 @@
             </graphic>
         </Button>
         <Label text="Le Pendu" styleClass="title"/>
-
         <!-- Timer Container -->
         <HBox styleClass="timer-container" alignment="CENTER" spacing="5">
             <Label styleClass="timer-icon"/>
@@ -45,6 +44,11 @@
                 </graphic>
             </Button>
         </HBox>
+        <HBox alignment="CENTER_RIGHT" styleClass="profile-box">
+            <ImageView fx:id="profileIcon" fitWidth="40" fitHeight="40" onMouseClicked="#handleProfileClick">
+                <Image url="@../resources/Images/profile-icon.png"/>
+            </ImageView>
+        </HBox>
     </HBox>
 
     <HBox alignment="CENTER" spacing="40">
@@ -56,9 +60,23 @@
 
         <!-- Game info area -->
         <VBox alignment="CENTER" spacing="10">
+            <Label fx:id="difficultyLabel" styleClass="difficulty-label"/>
             <Label fx:id="wordLabel" styleClass="word-display"/>
             <Label fx:id="guessedLettersLabel" styleClass="info-label"/>
         </VBox>
+    </HBox>
+
+    <!-- Add this near your user info display -->
+    <HBox alignment="CENTER" spacing="10">
+        <Label fx:id="levelLabel" styleClass="level-label"/>
+        <ProgressBar fx:id="xpProgressBar" prefWidth="100" styleClass="xp-progress"/>
+        <Label fx:id="xpLabel" styleClass="xp-label"/>
+    </HBox>
+
+    <!-- Add this near the top of your VBox -->
+    <HBox alignment="CENTER" spacing="10">
+        <HBox fx:id="heartsContainer" alignment="CENTER" spacing="5"/>
+        <Button fx:id="hintButton" text="Indice (3)" onAction="#handleHint" styleClass="hint-button"/>
     </HBox>
 
     <!-- French AZERTY keyboard -->

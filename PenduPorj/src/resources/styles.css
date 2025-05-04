@@ -11,7 +11,7 @@
 
 .word-display {
     -fx-font-size: 32px;
-    -fx-font-family: monospace;
+    -fx-font-family: 'Comic Sans MS', cursive;
     -fx-font-weight: bold;
     -fx-text-fill: #2c3e50;
 }
@@ -59,10 +59,11 @@
 }
 
 .splash-title {
-    -fx-font-size: 36px;
+    -fx-font-size: 42px;
     -fx-font-weight: bold;
     -fx-text-fill: #ecf0f1;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 2);
+    -fx-font-family: 'Arial Rounded MT Bold';
+    -fx-effect: dropshadow(three-pass-box, rgba(76,161,175,0.5), 0, 5, 5, 0);
 }
 
 .splash-description {
@@ -70,7 +71,7 @@
     -fx-text-fill: #8de8ff;
     -fx-text-alignment: center;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 1);
-    -fx-font-family: "monospace";
+    -fx-font-family: 'Comic Sans MS', cursive;
     -fx-font-weight: bold;
 }
 
@@ -149,7 +150,7 @@
 /* Hangman theme indicator */
 .word-display {
     -fx-font-size: 24px;
-    -fx-font-family: monospace;
+    -fx-font-family: 'Comic Sans MS', cursive;
     -fx-font-weight: bold;
     -fx-text-fill: #2c3e50;
     -fx-alignment: center;
@@ -314,7 +315,7 @@
 
 .word-display {
 
-    -fx-font-family: Serif;
+    -fx-font-family: 'Comic Sans MS', cursive;
     -fx-font-weight: bold;
     -fx-text-fill: #2c3e50;
     -fx-alignment: center;
@@ -495,53 +496,6 @@
     -fx-background-color: #E53935;
 }
 
-/* Login/Register Styles */
-.login-root, .register-root {
-    -fx-background-color: #f8f9fa;
-    -fx-padding: 40;
-}
-
-.login-title, .register-title {
-    -fx-font-size: 28px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #343a40;
-}
-
-.form-container {
-    -fx-background-color: white;
-    -fx-padding: 30;
-    -fx-background-radius: 10;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
-}
-
-.login-field, .register-field {
-    -fx-font-size: 14px;
-    -fx-pref-width: 250;
-    -fx-pref-height: 40;
-    -fx-background-radius: 5;
-    -fx-border-radius: 5;
-    -fx-border-color: #dee2e6;
-    -fx-border-width: 1;
-    -fx-padding: 0 10;
-}
-
-.login-field:focused, .register-field:focused {
-    -fx-border-color: #007bff;
-}
-
-.login-button, .register-button {
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-background-color: #007bff;
-    -fx-text-fill: white;
-    -fx-pref-width: 250;
-    -fx-pref-height: 40;
-    -fx-background-radius: 5;
-}
-
-.login-button:hover, .register-button:hover {
-    -fx-background-color: #0069d9;
-}
 
 .error-label {
     -fx-text-fill: #dc3545;
@@ -622,77 +576,6 @@
     -fx-alignment: center-left;
 }
 
-/* Base Styles */
-.root {
-    -fx-font-family: 'Segoe UI', Arial, sans-serif;
-}
-
-/* Login/Register Container Styles */
-.login-root, .register-root {
-    -fx-background-color: linear-gradient(to bottom right, #1a2a6c, #b21f1f, #fdbb2d);
-    -fx-padding: 40;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);
-}
-
-/* Title Styles */
-.login-title, .register-title {
-    -fx-font-size: 32px;
-    -fx-font-weight: bold;
-    -fx-text-fill: white;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 1);
-}
-
-/* Form Container */
-.form-container {
-    -fx-background-color: rgba(255, 255, 255, 0.9);
-    -fx-background-radius: 15;
-    -fx-padding: 30 40;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
-    -fx-border-radius: 15;
-    -fx-border-color: rgba(255, 255, 255, 0.3);
-    -fx-border-width: 1;
-}
-
-/* Input Field Styles */
-.login-field, .register-field {
-    -fx-font-size: 14px;
-    -fx-pref-width: 250;
-    -fx-pref-height: 45;
-    -fx-background-radius: 8;
-    -fx-border-radius: 8;
-    -fx-border-color: #ddd;
-    -fx-border-width: 1;
-    -fx-padding: 0 15;
-    -fx-background-color: white;
-    -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 0);
-}
-
-.login-field:focused, .register-field:focused {
-    -fx-border-color: #4a90e2;
-    -fx-effect: dropshadow(three-pass-box, rgba(74,144,226,0.3), 5, 0, 0, 0);
-}
-
-/* Button Styles */
-.login-button, .register-button {
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-background-color: linear-gradient(to right, #4a90e2, #5a9ae6);
-    -fx-text-fill: white;
-    -fx-pref-width: 250;
-    -fx-pref-height: 45;
-    -fx-background-radius: 8;
-    -fx-cursor: hand;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);
-}
-
-.login-button:hover, .register-button:hover {
-    -fx-background-color: linear-gradient(to right, #3a80d2, #4a90e2);
-}
-
-.login-button:pressed, .register-button:pressed {
-    -fx-background-color: linear-gradient(to right, #2a70c2, #3a80d2);
-    -fx-translate-y: 1;
-}
 
 /* Error Label */
 .error-label {
@@ -736,98 +619,6 @@
 /* Base Styles */
 .root {
     -fx-font-family: 'Segoe UI', Arial, sans-serif;
-}
-
-/* Login/Register Container Styles */
-.login-root, .register-root {
-    -fx-background-color: linear-gradient(to bottom right, #1a2a6c, #b21f1f, #fdbb2d);
-    -fx-padding: 40;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);
-    -fx-background-size: 400% 400%;
-    -fx-animation: gradientBG 15s ease infinite;
-}
-
-@keyframes gradientBG {
-    0% { -fx-background-position: 0% 50%; }
-    50% { -fx-background-position: 100% 50%; }
-    100% { -fx-background-position: 0% 50%; }
-}
-
-/* Title Styles */
-.login-title, .register-title {
-    -fx-font-size: 32px;
-    -fx-font-weight: bold;
-    -fx-text-fill: white;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 1);
-    -fx-transition: all 0.3s ease;
-}
-
-.login-title:hover, .register-title:hover {
-    -fx-scale-x: 1.05;
-    -fx-scale-y: 1.05;
-}
-
-/* Form Container */
-.form-container {
-    -fx-background-color: rgba(255, 255, 255, 0.9);
-    -fx-background-radius: 15;
-    -fx-padding: 30 40;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
-    -fx-border-radius: 15;
-    -fx-border-color: rgba(255, 255, 255, 0.3);
-    -fx-border-width: 1;
-    -fx-transition: all 0.3s ease;
-}
-
-.form-container:hover {
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 15, 0, 0, 5);
-}
-
-/* Input Field Styles */
-.login-field, .register-field {
-    -fx-font-size: 14px;
-    -fx-pref-width: 250;
-    -fx-pref-height: 45;
-    -fx-background-radius: 8;
-    -fx-border-radius: 8;
-    -fx-border-color: #ddd;
-    -fx-border-width: 1;
-    -fx-padding: 0 15;
-    -fx-background-color: white;
-    -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 0);
-    -fx-transition: all 0.3s ease;
-}
-
-.login-field:focused, .register-field:focused {
-    -fx-border-color: #4a90e2;
-    -fx-effect: dropshadow(three-pass-box, rgba(74,144,226,0.3), 5, 0, 0, 0);
-    -fx-scale-x: 1.02;
-    -fx-scale-y: 1.02;
-}
-
-/* Button Styles */
-.login-button, .register-button {
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-background-color: linear-gradient(to right, #4a90e2, #5a9ae6);
-    -fx-text-fill: white;
-    -fx-pref-width: 250;
-    -fx-pref-height: 45;
-    -fx-background-radius: 8;
-    -fx-cursor: hand;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);
-    -fx-transition: all 0.3s ease;
-}
-
-.login-button:hover, .register-button:hover {
-    -fx-background-color: linear-gradient(to right, #3a80d2, #4a90e2);
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 8, 0, 0, 3);
-}
-
-.login-button:pressed, .register-button:pressed {
-    -fx-background-color: linear-gradient(to right, #2a70c2, #3a80d2);
-    -fx-translate-y: 1;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 3, 0, 0, 1);
 }
 
 /* Error Label */
@@ -928,4 +719,783 @@
     -fx-text-fill: #e74c3c;
     -fx-font-weight: bold;
     -fx-animation: pulse 0.5s infinite;
+}
+
+/* Base button style */
+.difficulty-button {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-pref-width: 250;
+    -fx-pref-height: 50;
+    -fx-background-radius: 5;
+    -fx-text-fill: white;
+}
+
+/* Difficulty-specific styles */
+.easy-difficulty {
+    -fx-background-color: #28a745;
+}
+
+.easy-difficulty:hover {
+    -fx-background-color: #218838;
+}
+
+.medium-difficulty {
+    -fx-background-color: #17a2b8;
+}
+
+.medium-difficulty:hover {
+    -fx-background-color: #138496;
+}
+
+.hard-difficulty {
+    -fx-background-color: #ffc107;
+    -fx-text-fill: #212529;
+}
+
+.hard-difficulty:hover {
+    -fx-background-color: #e0a800;
+}
+
+.extra-hard-difficulty {
+    -fx-background-color: #dc3545;
+}
+
+.extra-hard-difficulty:hover {
+    -fx-background-color: #c82333;
+}
+
+/* Back button styles */
+.header-box {
+    -fx-padding: 0 0 20 0;
+}
+
+.back-button {
+    -fx-background-color: transparent;
+    -fx-padding: 5;
+    -fx-background-radius: 15;
+}
+
+.back-button:hover {
+    -fx-background-color: rgba(0,0,0,0.1);
+}
+
+.back-button:pressed {
+    -fx-background-color: rgba(0,0,0,0.2);
+}
+
+.theme-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* Difficulty label styles */
+.difficulty-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 5 10;
+    -fx-font-family: 'Comic Sans MS', cursive;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+    -fx-alignment: center;
+}
+
+.easy-difficulty {
+    -fx-background-color: #155724;
+    -fx-text-fill: #c3e6cb;
+    -fx-border-color: #155724;
+}
+
+.medium-difficulty {
+    -fx-background-color: #004085;
+    -fx-text-fill: #b8daff;
+    -fx-border-color: #004085;
+}
+
+.hard-difficulty {
+    -fx-background-color: #856404;
+    -fx-text-fill: #ffeeba;
+    -fx-border-color: #856404;
+}
+
+.extra-hard-difficulty {
+    -fx-background-color: #721c24;
+    -fx-text-fill: #f5c6cb;
+    -fx-border-color: #721c24;
+}
+
+/* Hangman Login Theme */
+.hangman-login-root {
+    -fx-font-family: 'Comic Sans MS', 'Marker Felt', cursive;
+    -fx-background-color: #f5f5f5;
+}
+
+/* Background with hangman sketch */
+.hangman-bg {
+    -fx-background-color: linear-gradient(to bottom, #e0f7fa, #b2ebf2);
+}
+
+.bg-rect {
+    -fx-fill: linear-gradient(to bottom, #e0f7fa, #b2ebf2);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+
+/* Hangman drawing elements */
+.rope-line {
+    -fx-stroke: #5d4037;
+    -fx-stroke-width: 3;
+    -fx-stroke-dash-array: 5 5;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);
+}
+
+.head-circle {
+    -fx-fill: transparent;
+    -fx-stroke: #5d4037;
+    -fx-stroke-width: 3;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);
+}
+
+.body-line, .arm-line, .leg-line {
+    -fx-stroke: #5d4037;
+    -fx-stroke-width: 3;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);
+}
+
+/* Main content container */
+.hangman-content-box {
+    -fx-background-color: transparent;
+    -fx-padding: 40;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
+}
+
+/* Logo and title styles */
+.logo-container {
+    -fx-alignment: center;
+    -fx-padding: 0 0 20 0;
+}
+
+.hangman-logo {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5);
+    -fx-transition: all 0.5s ease;
+}
+
+.hangman-logo:hover {
+    -fx-rotate: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 15, 0, 0, 5);
+}
+
+.game-title {
+    -fx-font-size: 42px;
+    -fx-font-weight: bold;
+    -fx-fill: #00796b;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.1), 2, 0, 0, 0);
+    -fx-font-family: 'Chalkduster', 'Marker Felt', fantasy;
+}
+
+.game-subtitle {
+    -fx-font-size: 16px;
+    -fx-fill: #00897b;
+    -fx-font-style: italic;
+}
+
+/* Form container - paper like effect */
+.hangman-form-container {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-padding: 30;
+    -fx-border-radius: 15;
+    -fx-border-color: #b2dfdb;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
+    -fx-alignment: center;
+    -fx-spacing: 15;
+}
+
+/* Input fields */
+.input-wrapper {
+    -fx-padding: 5 0;
+}
+
+.input-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #00796b;
+    -fx-font-weight: bold;
+}
+
+.input-container {
+    -fx-padding: 5 0;
+}
+
+.input-icon {
+    -fx-opacity: 0.7;
+}
+
+.hangman-field {
+    -fx-font-size: 14px;
+    -fx-pref-width: 250;
+    -fx-pref-height: 40;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #b2dfdb;
+    -fx-border-width: 1;
+    -fx-padding: 0 15;
+    -fx-background-color: white;
+    -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 0);
+    -fx-font-family: 'Comic Sans MS', cursive;
+}
+
+.hangman-field:focused {
+    -fx-border-color: #00796b;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,121,107,0.2), 5, 0, 0, 0);
+}
+
+/* Error message */
+.hangman-error-label {
+    -fx-text-fill: #c62828;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-wrap-text: true;
+    -fx-max-width: 250;
+    -fx-effect: dropshadow(one-pass-box, rgba(198,40,40,0.1), 0, 0, 0, 1);
+}
+
+/* Login button */
+.hangman-login-button {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(to bottom, #26a69a, #00897b);
+    -fx-text-fill: white;
+    -fx-pref-width: 200;
+    -fx-pref-height: 45;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);
+    -fx-font-family: 'Comic Sans MS', cursive;
+    -fx-transition: all 0.3s ease;
+}
+
+.hangman-login-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #00897b, #00796b);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 8, 0, 0, 3);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.hangman-login-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #00796b, #00695c);
+    -fx-translate-y: 2;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 3, 0, 0, 1);
+}
+
+.button-icon {
+    -fx-effect: dropshadow(one-pass-box, rgba(255,255,255,0.5), 1, 0, 0, 0);
+}
+
+/* Footer with register link */
+.footer-container {
+    -fx-padding: 20 0 0 0;
+}
+
+.footer-label {
+    -fx-text-fill: #00796b;
+    -fx-font-size: 14px;
+}
+
+.hangman-register-button {
+    -fx-font-size: 14px;
+    -fx-text-fill: #00897b;
+    -fx-background-color: transparent;
+    -fx-underline: true;
+    -fx-padding: 0;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-font-family: 'Comic Sans MS', cursive;
+    -fx-transition: all 0.2s ease;
+}
+
+.hangman-register-button:hover {
+    -fx-text-fill: #00695c;
+    -fx-translate-y: -1;
+}
+
+/* Animations */
+@keyframes float {
+    0% { -fx-translate-y: 0; }
+    50% { -fx-translate-y: -5; }
+    100% { -fx-translate-y: 0; }
+}
+
+@keyframes shake {
+    0% { -fx-translate-x: 0; }
+    25% { -fx-translate-x: -5; }
+    50% { -fx-translate-x: 5; }
+    75% { -fx-translate-x: -5; }
+    100% { -fx-translate-x: 0; }
+}
+
+@keyframes ropeSwing {
+    0% { -fx-rotate: 0; }
+    25% { -fx-rotate: 2; }
+    50% { -fx-rotate: -2; }
+    75% { -fx-rotate: 2; }
+    100% { -fx-rotate: 0; }
+}
+
+/* Apply animations */
+.hangman-logo {
+    -fx-animation: float 3s ease-in-out infinite;
+}
+
+.rope-line {
+    -fx-animation: ropeSwing 4s ease-in-out infinite;
+}
+
+/* Error animation */
+.hangman-error-label:showing {
+    -fx-animation: shake 0.5s ease;
+}
+
+
+.hangman-login-link-button {
+    -fx-font-size: 14px;
+    -fx-text-fill: #00796b;
+    -fx-background-color: transparent;
+    -fx-underline: true;
+    -fx-padding: 0;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-font-family: 'Comic Sans MS', cursive;
+    -fx-transition: all 0.2s ease;
+}
+
+.hangman-login-link-button:hover {
+    -fx-text-fill: #00695c;
+    -fx-translate-y: -1;
+}
+
+/* Password strength indicator */
+.password-strength {
+    -fx-font-size: 12px;
+    -fx-padding: 5 0 0 0;
+}
+
+.password-strength.weak {
+    -fx-text-fill: #f44336;
+}
+
+.password-strength.medium {
+    -fx-text-fill: #ff9800;
+}
+
+.password-strength.strong {
+    -fx-text-fill: #4caf50;
+}
+
+/* Hint alert styling */
+.hint-alert {
+    -fx-background-color: transparent;
+}
+
+.hint-alert > *.button-bar > *.container {
+    -fx-background-color: transparent;
+}
+
+.hint-alert .header-panel {
+    -fx-background-color: transparent;
+}
+
+.hint-alert .content {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+/* Level display styles */
+.level-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4a148c;
+}
+
+.xp-progress {
+    -fx-accent: #7b1fa2;
+}
+
+.xp-progress .track {
+    -fx-background-color: #e1bee7;
+    -fx-background-radius: 5;
+}
+
+.xp-progress .bar {
+    -fx-background-radius: 5;
+}
+
+.xp-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #4a148c;
+    -fx-font-weight: bold;
+    -fx-font-family: 'Comic Sans MS', cursive;
+}
+
+/* Level up animation style */
+.level-up {
+    -fx-effect: dropshadow(three-pass-box, rgba(255,215,0,0.8), 20, 0, 0, 0);
+}
+
+/* Hint confirmation dialog */
+.hint-confirmation {
+    -fx-background-color: #fff3e0;
+}
+
+.hint-confirmation .button {
+    -fx-font-weight: bold;
+}
+
+.hint-confirmation .button:default {
+    -fx-background-color: #4caf50;
+    -fx-text-fill: white;
+}
+
+.hint-confirmation .button:cancel {
+    -fx-background-color: #f44336;
+    -fx-text-fill: white;
+}
+
+/* Hint alert styling */
+.hint-alert {
+    -fx-background-color: #e3f2fd;
+}
+
+.hint-alert .header-panel {
+    -fx-background-color: #bbdefb;
+}
+
+.hint-alert .content.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #0d47a1;
+}
+
+/* Add to your styles.css */
+.heart {
+    -fx-cursor: hand;
+}
+
+.heart:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(255,0,0,0.8), 10, 0, 0, 0);
+}
+
+/* Profile Styles */
+.profile-root {
+    -fx-background-color: #f5f7fa;
+    -fx-padding: 0;
+}
+
+.profile-header {
+    -fx-background-color: linear-gradient(to right, #4b6cb7, #182848);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 0, 4, 10, 0);
+}
+
+.header-bg {
+    -fx-fill: linear-gradient(to bottom, #4b6cb7, #182848);
+}
+
+.profile-info {
+    -fx-padding: 20 0 25 0;
+}
+
+.profile-username {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 0, 0, 0, 1);
+}
+
+.profile-scroll {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+    -fx-padding: 20;
+}
+
+.profile-content {
+    -fx-padding: 0 0 20 0;
+}
+
+/* Cards */
+.stats-card,
+.progress-card,
+.achievements-card {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 0, 2, 5, 0);
+    -fx-padding: 15;
+}
+
+.section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+    -fx-padding: 0 0 5 0;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 0 1 0;
+}
+
+/* Stats */
+.stats-grid {
+    -fx-padding: 5 0 0 0;
+}
+
+.stat-box {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-border-color: #e0e0e0;
+    -fx-padding: 10;
+}
+
+.win-box {
+    -fx-background-color: rgba(76, 175, 80, 0.05);
+    -fx-border-color: rgba(76, 175, 80, 0.3);
+}
+
+.lose-box {
+    -fx-background-color: rgba(244, 67, 54, 0.05);
+    -fx-border-color: rgba(244, 67, 54, 0.3);
+}
+
+.stat-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #666;
+    -fx-font-weight: bold;
+}
+
+.stat-value {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+/* Progress */
+.progress-item {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 8;
+    -fx-padding: 10;
+}
+
+.progress-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #666;
+    -fx-font-weight: bold;
+}
+
+.progress-value {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+.coin-value {
+    -fx-text-fill: #FFC107;
+}
+
+.level-value {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4b6cb7;
+}
+
+.xp-progress {
+    -fx-accent: #4b6cb7;
+}
+
+.xp-progress .track {
+    -fx-background-color: #e0e0e0;
+    -fx-background-radius: 4;
+}
+
+.xp-progress .bar {
+    -fx-background-radius: 4;
+}
+
+.xp-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #666;
+}
+
+/* Achievements */
+.achievements-list {
+    -fx-spacing: 8;
+}
+
+/* Close button */
+.close-button {
+    -fx-background-color: #4b6cb7;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4;
+    -fx-padding: 8 25;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 0, 1, 2, 0);
+}
+
+.close-button:hover {
+    -fx-background-color: #3a5a9b;
+}
+
+.reset-button {
+    -fx-background-color: #ff5252;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4;
+    -fx-padding: 8 25;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 0, 1, 2, 0);
+}
+
+.reset-button:hover {
+    -fx-background-color: #ff1744;
+}
+
+/* Reset Confirmation Dialog Styles */
+.reset-confirmation-dialog {
+    -fx-background-color: #fff3e0;
+    -fx-border-color: #ff9800;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+}
+
+.reset-confirmation-dialog .button-bar .button {
+    -fx-font-weight: bold;
+    -fx-padding: 5 15;
+    -fx-background-radius: 4;
+}
+
+.reset-confirmation-dialog .button-bar .button:default {
+    -fx-background-color: #f44336;
+    -fx-text-fill: white;
+}
+
+.reset-confirmation-dialog .button-bar .button:default:hover {
+    -fx-background-color: #d32f2f;
+}
+
+.reset-confirmation-dialog .button-bar .button:cancel {
+    -fx-background-color: #9e9e9e;
+    -fx-text-fill: white;
+}
+
+.reset-confirmation-dialog .button-bar .button:cancel:hover {
+    -fx-background-color: #757575;
+}
+
+/* Button Styles */
+.retour-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1);
+}
+
+.retour-button:hover {
+    -fx-background-color: #2980b9;
+}
+
+.reset-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1);
+}
+
+.reset-button:hover {
+    -fx-background-color: #c0392b;
+}
+
+/* Splash Screen Styles */
+.splash-root {
+    -fx-background-color: linear-gradient(to bottom, #f5f7fa, #c3cfe2);
+    -fx-padding: 40px;
+    -fx-alignment: center;
+}
+
+
+.progress-container {
+    -fx-padding: 20px;
+    -fx-background-color: rgba(255,255,255,0.7);
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-color: rgba(44,62,80,0.1);
+    -fx-border-width: 1;
+}
+
+.progress-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #5a5a5a;
+}
+
+.progress-bar {
+    -fx-accent: #4ca1af;
+    -fx-background-insets: 0;
+    -fx-pref-height: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(76,161,175,0.3), 5, 0, 0, 1);
+}
+
+.progress-bar-bg {
+    -fx-accent: transparent;
+    -fx-background-color: rgba(44,62,80,0.1);
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+    -fx-pref-height: 10px;
+}
+
+.progress-text {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-font-family: 'Comic Sans MS', cursive;
+}
+
+.start-button {
+    -fx-background-color: linear-gradient(to right, #4ca1af, #2c3e50);
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 12px 30px;
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 2);
+    -fx-cursor: hand;
+    -fx-graphic-text-gap: 10px;
+}
+
+.start-button:hover {
+    -fx-background-color: linear-gradient(to right, #2c3e50, #4ca1af);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 15, 0, 0, 3);
+}
+
+.footer-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #7f8c8d;
+    -fx-font-style: italic;
+}
+
+/* Footer Styles */
+.footer-container {
+    -fx-padding: 20 0 0 0;
+}
+
+.footer-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #4ca1af;
+    -fx-font-weight: bold;
+    -fx-font-family: 'Comic Sans MS', cursive;
+    -fx-effect: dropshadow(three-pass-box, rgba(76,161,175,0.2), 0, 1, 1, 0);
 }

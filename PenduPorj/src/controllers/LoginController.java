@@ -37,7 +37,7 @@ public class LoginController {
 
     private void animateForm() {
         // Initial state for fade-in
-        formContainer.setOpacity(0);
+
         logoImageView.setOpacity(0);
 
         // Logo animation
@@ -94,31 +94,19 @@ public class LoginController {
         User user = UserService.loginUser(username, password);
         if (user != null) {
             SessionManager.getInstance().setCurrentUser(user);
-            navigateToThemeSelection();
+            navigateToDifficultySelection();
         } else {
             showError("Nom d'utilisateur ou mot de passe incorrect");
             shakeError();
         }
     }
 
-    private void navigateToThemeSelection() {
+    private void navigateToDifficultySelection() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/theme-selection.fxml"));
-            Parent root = loader.load();
-
-            ThemeSelectionController controller = loader.getController();
-            controller.setCurrentUser(SessionManager.getInstance().getCurrentUser());
-
+            Parent root = FXMLLoader.load(getClass().getResource("../views/DifficultySelection.fxml"));
             Stage stage = (Stage) usernameField.getScene().getWindow();
             stage.setScene(new Scene(root));
-
-            // Add fade transition between scenes
-            FadeTransition fadeOut = new FadeTransition(Duration.millis(300), usernameField.getScene().getRoot());
-            fadeOut.setFromValue(1);
-            fadeOut.setToValue(0);
-            fadeOut.setOnFinished(e -> stage.show());
-            fadeOut.play();
-
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

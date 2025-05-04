@@ -15,14 +15,17 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import models.Difficulty;
 import models.Game;
 import models.User;
 import models.WordDictionary;
@@ -30,6 +33,8 @@ import models.WordDictionary;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -55,6 +60,15 @@ public class HangmanController {
     @FXML private Canvas hangmanCanvas;
     @FXML private Label userInfoLabel;
 
+    @FXML private Label difficultyLabel;
+    @FXML private HBox heartsContainer;
+    @FXML private Button hintButton;
+    @FXML private Label levelLabel;
+    @FXML private Label xpLabel;
+    @FXML private ProgressBar xpProgressBar;
+    @FXML private ImageView profileIcon;
+
+    private List<ImageView> heartImages = new ArrayList<>();;
 
     private GraphicsContext gc;
     private final String[] keyboardRows = {
@@ -76,6 +90,8 @@ public class HangmanController {
         updateTimerDisplay();
         bonusTimeLabel.setVisible(false);
         startGameWithTimer();
+        initializeHearts();
+
         // Load sounds
         try {
             String winSoundPath = getClass().getResource("/resources/Sounds/win.mp3").toExternalForm();
@@ -111,6 +127,7 @@ public class HangmanController {
             showAlert("Error", "Could not load dictionary: " + e.getMessage(),false);
             e.printStackTrace();
         }
+
     }
 
     private void setupTimer() {
@@ -131,7 +148,7 @@ public class HangmanController {
     }
 
     private void resetTimer() {
-        timeRemaining = 90;
+        // Keep the current timeRemaining value that was set in updateDifficultyDisplay
         updateTimerDisplay();
         if (countdownTimeline != null) {
             countdownTimeline.stop();
@@ -209,6 +226,130 @@ public class HangmanController {
     }
 
 
+    private void initializeHearts() {
+        heartsContainer.getChildren().clear();
+        heartImages.clear();
+
+        for (int i = 0; i < 3; i++) {
+            ImageView heart = new ImageView(new Image(getClass().getResourceAsStream("../resources/Images/heart.png")));
+            heart.setFitWidth(30);
+            heart.setFitHeight(30);
+            heart.getStyleClass().add("heart");
+
+            heart.setOnMouseClicked(e -> handleHint());
+
+            heartsContainer.getChildren().add(heart);
+            heartImages.add(heart);
+        }
+
+        updateHintButton();
+    }
+
+    private void showHintAlert(Runnable onConfirm) {
+        // Create confirmation alert
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle("Confirmation d'achat");
+        confirmation.setHeaderText(null);
+        confirmation.setGraphic(null);
+
+        // Custom dialog styling
+        DialogPane dialogPane = confirmation.getDialogPane();
+        dialogPane.getStylesheets().add(
+                getClass().getResource("../resources/styles.css").toExternalForm()
+        );
+        dialogPane.getStyleClass().add("hint-confirmation");
+
+        // Create custom content
+        VBox content = new VBox(20);
+        content.setAlignment(Pos.CENTER);
+        content.setPadding(new Insets(20));
+        content.setStyle("-fx-background-color: #fff3e0;" +
+                "-fx-background-radius: 15;" +
+                "-fx-border-radius: 15;" +
+                "-fx-border-width: 2;" +
+                "-fx-border-color: #ffb74d;");
+
+        // Add icon
+        ImageView icon = new ImageView(new Image(getClass().getResourceAsStream("../resources/Images/coin.png")));
+        icon.setFitWidth(50);
+        icon.setFitHeight(50);
+
+        // Add hint text
+        Label hintLabel = new Label("Cet indice coûte 20 pièces\n\nVoulez-vous vraiment acheter cet indice?");
+        hintLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: #e65100; -fx-font-weight: bold; -fx-wrap-text: true;");
+        hintLabel.setMaxWidth(300);
+        hintLabel.setAlignment(Pos.CENTER);
+
+        content.getChildren().addAll(icon, hintLabel);
+        dialogPane.setContent(content);
+
+        // Set button types
+        ButtonType confirmButton = new ButtonType("Acheter", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButton = new ButtonType("Annuler", ButtonBar.ButtonData.CANCEL_CLOSE);
+        confirmation.getButtonTypes().setAll(confirmButton, cancelButton);
+
+        // Show and wait for response
+        confirmation.showAndWait().ifPresent(response -> {
+            if (response == confirmButton) {
+                onConfirm.run();
+            }
+        });
+    }
+
+    private void updateHintButton() {
+        if (game != null) {
+            if (game.getRemainingHints() > 0) {
+                hintButton.setDisable(true);
+                hintButton.setText("Indice (" + game.getRemainingHints() + ") - 20 pièces");
+            } else {
+                hintButton.setDisable(true);
+                hintButton.setText("Pas d'indices disponibles");
+            }
+        }
+    }
+
+    @FXML
+    private void handleHint() {
+        if (game == null || game.getRemainingHints() <= 0) {
+            return;
+        }
+
+        if (!sessionManager.isLoggedIn()) {
+            showAlert("Information", "Vous devez être connecté pour utiliser des indices", false);
+            return;
+        }
+
+        User user = sessionManager.getCurrentUser();
+        final int hintCost = 20; // Cost per hint in coins
+
+        if (user.getCoins() < hintCost) {
+            showAlert("paspièces", "Vous n'avez pas assez de pièces pour cet indice", false);
+            return;
+        }
+
+        // Show confirmation dialog first
+        showHintAlert(() -> {
+            // Only get the hint after confirmation
+            String hint = game.useHint();
+
+            // Deduct coins
+            user.addCoins(-hintCost);
+            UserService.updateUserStats(user);
+            updateUserInfo();
+
+            // Remove one heart
+            if (!heartImages.isEmpty()) {
+                heartsContainer.getChildren().remove(heartImages.remove(heartImages.size() - 1));
+            }
+
+            // Update hint button
+            updateHintButton();
+
+            // Show the hint
+            showAlert("Indice", hint, false);
+        });
+    }
+
     private void startNewGame() {
         if (dictionary == null) {
             showAlert("Error", "Dictionary not initialized", true);
@@ -219,20 +360,112 @@ public class HangmanController {
             currentTheme = dictionary.getAvailableThemes().iterator().next();
         }
 
-        game = new Game(dictionary.getRandomWord(currentTheme));
+        // Get difficulty from session
+        Difficulty difficulty = sessionManager.getCurrentDifficulty();
+        WordDictionary.WordWithHints wordWithHints = dictionary.getRandomWordWithHints(currentTheme, difficulty);
+        game = new Game(wordWithHints.getWord(), wordWithHints.getHints());
+
+        initializeHearts();
+
+        // Update difficulty display and set initial time
+        updateDifficultyDisplay(difficulty);
+
+        // Reset timer with the new time
         resetTimer();
         updateUI();
         setupKeyboard();
 
         wordLabel.setText("Thème: " + currentTheme + "\n" + game.getCurrentState());
-
-        // Start timer only when the game is ready
         startGameWithTimer();
+    }
+
+    private void updateDifficultyDisplay(Difficulty difficulty) {
+        String styleClass = "";
+        String emoji = "";
+
+        switch(difficulty) {
+            case EASY:
+                timeRemaining = 90;
+                styleClass = "easy-difficulty";
+                emoji = "😊";
+                break;
+            case MEDIUM:
+                timeRemaining = 60;
+                styleClass = "medium-difficulty";
+                emoji = "😐";
+                break;
+            case HARD:
+                timeRemaining = 45;
+                styleClass = "hard-difficulty";
+                emoji = "😓";
+                break;
+            case EXTRA_HARD:
+                timeRemaining = 30;
+                styleClass = "extra-hard-difficulty";
+                emoji = "😰";
+                break;
+        }
+
+        difficultyLabel.getStyleClass().setAll("difficulty-label", styleClass);
+        difficultyLabel.setText(difficulty.toString() + " " + emoji);
     }
 
     private void startGameWithTimer() {
         if (countdownTimeline != null) {
             countdownTimeline.playFromStart();
+        }
+    }
+
+    @FXML
+    private void handleProfileClick() {
+        try {
+            // Pause game timers
+            if (countdownTimeline != null) {
+                countdownTimeline.pause();
+            }
+
+            // Load profile view
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/profile-view.fxml"));
+            Parent root = loader.load();
+
+            // Get current stage
+            Stage currentStage = (Stage) keyboardGrid.getScene().getWindow();
+
+            // Create new scene
+            Scene profileScene = new Scene(root);
+            profileScene.getStylesheets().add(getClass().getResource("../resources/styles.css").toExternalForm());
+
+            // Set controller references
+            ProfileController profileController = loader.getController();
+            profileController.setPreviousScene(keyboardGrid.getScene());
+            profileController.setHangmanController(this);
+            profileController.setStage(currentStage); // Pass the stage reference
+
+            // Apply fade transition
+            FadeTransition fadeOut = new FadeTransition(Duration.millis(300), keyboardGrid.getScene().getRoot());
+            fadeOut.setFromValue(1.0);
+            fadeOut.setToValue(0.0);
+            fadeOut.setOnFinished(e -> {
+                currentStage.setScene(profileScene);
+                FadeTransition fadeIn = new FadeTransition(Duration.millis(300), root);
+                fadeIn.setFromValue(0.0);
+                fadeIn.setToValue(1.0);
+                fadeIn.play();
+            });
+            fadeOut.play();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Resume game if error occurs
+            if (countdownTimeline != null) {
+                countdownTimeline.play();
+            }
+        }
+    }
+
+    public void resumeGame() {
+        if (countdownTimeline != null) {
+            countdownTimeline.play();
         }
     }
 
@@ -269,6 +502,7 @@ public class HangmanController {
                 user.addWin();
                 UserService.updateUserStats(user);
                 updateUserInfo(); // Immediate update
+                //showLevelUpAnimation();
             }
             playWinAnimation();
             showAlert("Félicitations!", "Vous avez gagné!\n\nLe mot était: " + game.getWordToGuess(), true);
@@ -431,7 +665,7 @@ public class HangmanController {
         dialogPane.getStylesheets().add(
                 getClass().getResource("../resources/styles.css").toExternalForm()
         );
-        dialogPane.getStyleClass().add(title.equals("Félicitations!") ? "win-alert" : "lose-alert");
+        dialogPane.getStyleClass().add(title.equals("Félicitations!") || title.equals("Indice") ? "win-alert" : "lose-alert");
 
         VBox content = new VBox(20);
         content.setAlignment(Pos.CENTER);
@@ -440,17 +674,19 @@ public class HangmanController {
                 "-fx-background-radius: 15;" +
                 "-fx-border-radius: 15;" +
                 "-fx-border-width: 3;" +
-                "-fx-border-color: " + (title.equals("Félicitations!") ? "#4CAF50" : "#f44336") + ";");
+                "-fx-border-color: " +
+                (title.equals("Félicitations!") || title.equals("Indice") ? "#4CAF50" : "#f44336") + ";");
+
 
         Pane decorationTop = new Pane();
         decorationTop.setPrefSize(200, 10);
         decorationTop.setStyle("-fx-background-color: linear-gradient(to right, transparent, " +
-                (title.equals("Félicitations!") ? "#4CAF50" : "#f44336") + ", transparent);");
+                (title.equals("Félicitations!") || title.equals("Indice") ? "#4CAF50" : "#f44336") + ", transparent);");
 
         Pane decorationBottom = new Pane();
         decorationBottom.setPrefSize(200, 10);
         decorationBottom.setStyle("-fx-background-color: linear-gradient(to right, transparent, " +
-                (title.equals("Félicitations!") ? "#4CAF50" : "#f44336") + ", transparent);");
+                (title.equals("Félicitations!") || title.equals("Indice") ? "#4CAF50" : "#f44336") + ", transparent);");
 
         ImageView icon = new ImageView();
         icon.setFitWidth(100);
@@ -459,6 +695,14 @@ public class HangmanController {
         if (title.equals("Félicitations!")) {
             icon.setImage(new Image(getClass().getResourceAsStream("../resources/Images/trophy.png")));
             playWinSound();
+        } else if (title.equals("paspièces")) {
+            icon.setImage(new Image(getClass().getResourceAsStream("../resources/Images/moneyover.png")));
+            playLoseSound();
+        } else if (title.equals("Temps écoulé")) {
+            icon.setImage(new Image(getClass().getResourceAsStream("../resources/Images/timeover.png")));
+            playLoseSound();
+        } else if (title.equals("Indice")) {
+            icon.setImage(new Image(getClass().getResourceAsStream("../resources/Images/hint.png")));
         } else {
             icon.setImage(new Image(getClass().getResourceAsStream("../resources/Images/skull.png")));
             playLoseSound();
@@ -546,6 +790,58 @@ public class HangmanController {
                     user.getCoins(),
                     user.getWins(),
                     user.getLosses()));
+
+            levelLabel.setText("Niveau " + user.getLevel());
+            xpProgressBar.setProgress((double) user.getXp() / user.getXpToNextLevel());
+            int xpPercent = (int) ((double) user.getXp() / user.getXpToNextLevel() * 100);
+            xpLabel.setText(user.getXp() + "/" + user.getXpToNextLevel() + " XP" + " (" + xpPercent + "%)");
+
+        }
+    }
+
+    private void showLevelUpAnimation() {
+        if (sessionManager.isLoggedIn()) {
+            User user = sessionManager.getCurrentUser();
+
+            // Check if user just leveled up (XP was reset)
+            if (user.getXp() == 0 && user.getLevel() > 1) {
+                Pane rootPane = (Pane) keyboardGrid.getScene().getRoot();
+
+                // Create level up label
+                Label levelUpLabel = new Label("Niveau " + user.getLevel() + " atteint!");
+                levelUpLabel.setStyle("-fx-font-size: 24px; -fx-text-fill: gold; -fx-font-weight: bold;");
+                levelUpLabel.setLayoutX(rootPane.getWidth()/2 - 100);
+                levelUpLabel.setLayoutY(rootPane.getHeight()/2 - 50);
+                levelUpLabel.setOpacity(0);
+
+                rootPane.getChildren().add(levelUpLabel);
+
+                // Animation sequence
+                ScaleTransition scale = new ScaleTransition(Duration.millis(1000), levelUpLabel);
+                scale.setFromX(0.5);
+                scale.setFromY(0.5);
+                scale.setToX(1.5);
+                scale.setToY(1.5);
+
+                FadeTransition fadeIn = new FadeTransition(Duration.millis(500), levelUpLabel);
+                fadeIn.setFromValue(0);
+                fadeIn.setToValue(1);
+
+                FadeTransition fadeOut = new FadeTransition(Duration.millis(500), levelUpLabel);
+                fadeOut.setFromValue(1);
+                fadeOut.setToValue(0);
+                fadeOut.setDelay(Duration.millis(1500));
+
+                SequentialTransition sequence = new SequentialTransition(
+                        fadeIn,
+                        scale,
+                        new PauseTransition(Duration.millis(1000)),
+                        fadeOut
+                );
+
+                sequence.setOnFinished(e -> rootPane.getChildren().remove(levelUpLabel));
+                sequence.play();
+            }
         }
     }
 

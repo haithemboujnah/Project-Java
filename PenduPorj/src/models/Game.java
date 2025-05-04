@@ -1,6 +1,7 @@
 package models;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Game {
@@ -8,11 +9,25 @@ public class Game {
     private Set<Character> guessedLetters;
     private int remainingAttempts;
     private final int maxAttempts = 8;
+    private List<String> hints;
+    private int hintsUsed = 0;
 
-    public Game(String wordToGuess) {
+    public Game(String wordToGuess, List<String> hints) {
         this.wordToGuess = wordToGuess.toUpperCase();
         this.guessedLetters = new HashSet<>();
         this.remainingAttempts = maxAttempts;
+        this.hints = hints;
+    }
+
+    public String useHint() {
+        if (hintsUsed < hints.size()) {
+            return hints.get(hintsUsed++);
+        }
+        return "Pas d'autres indices disponibles";
+    }
+
+    public int getRemainingHints() {
+        return hints.size() - hintsUsed;
     }
 
     public boolean guessLetter(char letter) {

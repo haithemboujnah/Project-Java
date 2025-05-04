@@ -1,7 +1,6 @@
 package controllers;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,32 +19,51 @@ public class SplashController {
     @FXML private Button startButton;
 
     private Timeline loadingTimeline;
-    private double progress = 0;
 
     public void initialize() {
-        // Hide start button initially
+        // Initial state
         startButton.setVisible(false);
+        startButton.setOpacity(0);
+        progressBar.setProgress(0);
 
-        // Create loading animation
+        // Create smoother loading animation
         loadingTimeline = new Timeline(
-                new KeyFrame(Duration.millis(100), event -> {
-                    progress += 0.05;
-                    if (progress >= 1.0) {
-                        progress = 1.0;
-                        loadingTimeline.stop();
-                        onLoadingComplete();
-                    }
-                    progressBar.setProgress(progress);
-                    progressText.setText(String.format("%d%%", (int)(progress * 100)));
-                })
+                new KeyFrame(Duration.ZERO, new KeyValue(progressBar.progressProperty(), 0)),
+                new KeyFrame(Duration.seconds(2.5),
+                        new KeyValue(progressBar.progressProperty(), 1.0))
         );
-        loadingTimeline.setCycleCount(Timeline.INDEFINITE);
+
+        loadingTimeline.setOnFinished(e -> onLoadingComplete());
         loadingTimeline.play();
+
+        // Percentage text animation
+        Timeline textTimeline = new Timeline(
+                new KeyFrame(Duration.millis(50), e -> {
+                    int percent = (int)(progressBar.getProgress() * 100);
+                    progressText.setText(String.format("%d%%", percent));
+                }
+                ));
+        textTimeline.setCycleCount(Timeline.INDEFINITE);
+        textTimeline.play();
     }
 
     private void onLoadingComplete() {
-        startButton.setVisible(true);
         progressText.setText("Prêt!");
+
+        // Animate button appearance
+        startButton.setVisible(true);
+        FadeTransition fadeIn = new FadeTransition(Duration.millis(500), startButton);
+        fadeIn.setFromValue(0);
+        fadeIn.setToValue(1);
+        fadeIn.play();
+
+        // Add bounce effect
+        ScaleTransition scale = new ScaleTransition(Duration.millis(300), startButton);
+        scale.setFromX(0.8);
+        scale.setFromY(0.8);
+        scale.setToX(1.0);
+        scale.setToY(1.0);
+        scale.play();
     }
 
     @FXML

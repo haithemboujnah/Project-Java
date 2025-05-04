@@ -1,10 +1,12 @@
 package Services;
 
+import models.Difficulty;
 import models.User;
 
 public class SessionManager {
     private static SessionManager instance;
     private User currentUser;
+    private Difficulty currentDifficulty;
 
     private SessionManager() {}
 
@@ -14,6 +16,7 @@ public class SessionManager {
         }
         return instance;
     }
+
 
     public User getCurrentUser() {
         return currentUser;
@@ -29,5 +32,13 @@ public class SessionManager {
 
     public boolean isLoggedIn() {
         return currentUser != null;
+    }
+
+    public void setCurrentDifficulty(Difficulty difficulty) {
+        this.currentDifficulty = difficulty;
+    }
+
+    public Difficulty getCurrentDifficulty() {
+        return currentDifficulty != null ? currentDifficulty : Difficulty.MEDIUM;
     }
 }

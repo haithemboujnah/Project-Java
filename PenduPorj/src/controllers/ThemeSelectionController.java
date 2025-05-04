@@ -215,9 +215,26 @@ public class ThemeSelectionController {
 
             HangmanController controller = loader.getController();
             controller.setTheme(theme, dictionary);
-
-            // Update user info in the Hangman controller
             controller.updateUserInfo();
+
+            Stage stage = (Stage) themeGrid.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Add this method to handle going back to difficulty selection
+    @FXML
+    private void handleBackToDifficulty() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/DifficultySelection.fxml"));
+            Parent root = loader.load();
+
+            // Pass the current user to maintain session
+            DifficultySelectionController controller = loader.getController();
+            controller.setCurrentUser(sessionManager.getCurrentUser());
 
             Stage stage = (Stage) themeGrid.getScene().getWindow();
             stage.setScene(new Scene(root));

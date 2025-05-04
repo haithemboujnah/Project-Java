@@ -38,12 +38,16 @@ public class UserService {
     }
 
     public static void updateUserStats(User user) {
+        Document updateDoc = new Document("$set", new Document()
+                .append("wins", user.getWins())
+                .append("losses", user.getLosses())
+                .append("coins", user.getCoins())
+                .append("level", user.getLevel())
+                .append("xp", user.getXp()));
+
         collection.updateOne(
                 Filters.eq("username", user.getUsername()),
-                new Document("$set", new Document()
-                        .append("wins", user.getWins())
-                        .append("losses", user.getLosses())
-                        .append("coins", user.getCoins()))
+                updateDoc
         );
     }
 }

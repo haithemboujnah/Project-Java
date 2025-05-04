@@ -3,37 +3,72 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
 
 <?import java.net.URL?>
-<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+<?import javafx.scene.shape.Circle?>
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="controllers.SplashController"
-      alignment="CENTER" spacing="20" styleClass="splash-root"
-      prefWidth="400" prefHeight="680">
+      alignment="CENTER" spacing="30" styleClass="splash-root">
 
     <stylesheets>
         <URL value="@../resources/styles.css" />
     </stylesheets>
 
-    <ImageView>
-        <Image url="@../resources/Images/hangman-icon.png" />
-    </ImageView>
+    <!-- Game Logo -->
+    <StackPane>
+        <Circle radius="80" fill="linear-gradient(to bottom right, #2c3e50, #4ca1af)"/>
+        <ImageView fitWidth="120" fitHeight="120">
+            <Image url="@../resources/Images/hangman-icon.png" />
+            <effect>
+                <DropShadow color="rgba(0,0,0,0.3)" radius="10" spread="0.2"/>
+            </effect>
+        </ImageView>
+    </StackPane>
 
-    <Label text="Le Pendu" styleClass="splash-title"/>
+    <!-- Game Title -->
+    <Label text="LE PENDU" styleClass="splash-title">
+        <effect>
+            <DropShadow color="#4ca1af" radius="0" spread="0.5"/>
+        </effect>
+    </Label>
 
+    <!-- Game Description -->
     <Label text="Devinez le mot avant que le bonhomme ne soit pendu!"
            styleClass="splash-description"
            wrapText="true"
+           textAlignment="CENTER"
            maxWidth="300"/>
 
-    <VBox alignment="CENTER" spacing="10" styleClass="progress-container">
-        <Label text="Chargement..." styleClass="progress-label"/>
-        <ProgressBar fx:id="progressBar" styleClass="progress-bar" minWidth="200"/>
+    <!-- Progress Section -->
+    <!-- Progress Section -->
+    <VBox alignment="CENTER" spacing="15" styleClass="progress-container">
+        <Label text="Chargement en cours..." styleClass="progress-label"/>
+
+        <!-- Single Progress Bar -->
+        <ProgressBar fx:id="progressBar" styleClass="progress-bar" prefWidth="250"/>
+
         <Label fx:id="progressText" styleClass="progress-text"/>
     </VBox>
 
-    <Button fx:id="startButton" text="Commencer"
+    <!-- Start Button -->
+    <Button fx:id="startButton" text="COMMENCER"
             styleClass="start-button"
             visible="false"
-            onAction="#handleStartGame"/>
+            onAction="#handleStartGame">
+        <graphic>
+            <ImageView fitWidth="20" fitHeight="20">
+                <Image url="@../resources/Images/login-arrow.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+
+    <!-- Footer -->
+    <!-- Footer Section -->
+    <VBox alignment="CENTER" spacing="5" styleClass="footer-container">
+        <Label text="© 2025 Le Pendu - Développé par équipe SoftHero" styleClass="footer-text"/>
+    </VBox>
 
 </VBox>

@@ -1,178 +1,169 @@
 [Animaux]
-LION
-TIGRE
-ELEPHANT
-GIRAFE
-SINGE
-ZEBRE
-HIPPOPOTAME
-RENARD
-LOUP
-OURS
-KANGOUROU
-PANDA
-PERROQUET
-CROCODILE
-TORTUE
-
+LION|Le roi de la jungle|Grand félin|A une crinière
+TIGRE|Félin rayé|Le plus grand des chats sauvages|Peut nager
+ELEPHANT|Le plus grand animal terrestre|A une trompe|A de grandes oreilles
+GIRAFE|Animal au long cou|A des taches|Le plus haut animal terrestre
+SINGE|Imite les humains|Vit dans les arbres|A une queue préhensile
+ZEBRE|Rayures noires et blanches|Vit en Afrique|De la famille des équidés
+HIPPOPOTAME|Gros animal amphibie|Vit dans les rivières|Peau très épaisse
+RENARD|Petit canidé rusé|Queue touffue|Héro de fables
+LOUP|Vit en meute|Hurle à la lune|Ancêtre du chien
+OURS|Hiberne en hiver|Aime le miel|Pelage épais
+KANGOUROU|Animal sauteur australien|Femelle a une poche|Queue musclée
+PANDA|Mange du bambou|Noir et blanc|Symbole de la WWF
+PERROQUET|Oiseau qui parle|Plumes colorées|Peut imiter des sons
+CROCODILE|Reptile aquatique|Mâchoires puissantes|Peau écailleuse
+TORTUE|A une carapace|Vit très longtemps|Se déplace lentement
 
 [Fruits]
-POMME
-BANANE
-ORANGE
-FRAISE
-MANGUE
-ANANAS
-KIWI
-CITRON
-PECHE
-ABRICOT
-CERISE
-PASTEQUE
-MELON
-RAISIN
-FIGUE
-
+POMME|Fruit croquant|Rouge ou verte|Symbole de New York
+BANANE|Fruit tropical jaune|En régime|Riche en potassium
+ORANGE|Agrume juteux|Couleur homonyme|Riche en vitamine C
+FRAISE|Petit fruit rouge|A des akènes|Se mange en été
+MANGUE|Fruit tropical sucré|Noyau plat|Peau non comestible
+ANANAS|Fruit à écailles|Couronne de feuilles|Jus acidulé
+KIWI|Petit fruit velu|Vert à l'intérieur|Origine néo-zélandaise
+CITRON|Agrume acide|Jaune vif|Utilisé en limonade
+PECHE|Fruit à noyau duveteux|Chair juteuse|Fleur rose au printemps
+ABRICOT|Petit fruit orangé|Noyau lisse|Séchée c'est un pruneau
+CERISE|Petit fruit rouge|Double noyau|Sur le gâteau
+PASTEQUE|Gros fruit d'été|Pleine d'eau|Chair rouge ou jaune
+MELON|Fruit sucré|Peau nervurée|Se mange froid
+RAISIN|Fruit en grappe|Donne du vin|Sec c'est un raisin sec
+FIGUE|Fruit méditerranéen|Plein de petites graines|Feuille d'Adam
 
 [Pays]
-FRANCE
-ALLEMAGNE
-ESPAGNE
-ITALIE
-CANADA
-JAPON
-BRESIL
-MEXIQUE
-CHINE
-INDE
-EGYPTE
-AUSTRALIE
-RUSSIE
-SUISSE
-BELGIQUE
-
+FRANCE|Pays du fromage|Capitale Paris|Tour Eiffel
+ALLEMAGNE|Pays de la bière|Capitale Berlin|Mur de Berlin
+ESPAGNE|Pays des taureaux|Capitale Madrid|Flamenco
+ITALIE|Pays en forme de botte|Capitale Rome|Colisée
+CANADA|Pays du sirop d'érable|Feuille d'érable|Hymne national "Ô Canada"
+JAPON|Pays du soleil levant|Capitale Tokyo|Sushi
+BRESIL|Pays du carnaval|Capitale Brasilia|Forêt amazonienne
+MEXIQUE|Pays des tacos|Capitale Mexico|Pyramides mayas
+CHINE|Pays le plus peuplé|Capitale Pékin|Grande Muraille
+INDE|Pays du curry|Capitale New Delhi|Taj Mahal
+EGYPTE|Pays des pharaons|Capitale Le Caire|Pyramides de Gizeh
+AUSTRALIE|Pays des kangourous|Capitale Canberra|Opéra de Sydney
+RUSSIE|Plus grand pays du monde|Capitale Moscou|Poupées russes
+SUISSE|Pays du chocolat|Capitale Berne|Montres de luxe
+BELGIQUE|Pays des frites|Capitale Bruxelles|Manneken Pis
 
 [Sports]
-FOOTBALL
-BASKETBALL
-TENNIS
-NATATION
-CYCLISME
-RUGBY
-HANDBALL
-VOLLEY
-JUDO
-ATHLETISME
-GOLF
-ESCALADE
-BOXING
-AVIRON
-BADMINTON
-
+FOOTBALL|Sport avec un ballon rond|11 joueurs par équipe|Coupe du Monde
+BASKETBALL|Sport avec un ballon orange|Se joue à 5 contre 5|Panneau et filet
+TENNIS|Sport de raquette|Surface en terre battue ou gazon|Tournoi de Wimbledon
+NATATION|Sport aquatique|Différentes nages|Championnats du monde FINA
+CYCLISME|Sport avec un vélo|Tour de France|Maillot jaune
+RUGBY|Sport ovale|Plaquages autorisés|Coupe du monde tous les 4 ans
+HANDBALL|Sport avec un petit ballon|Se joue à 7 contre 7|Popularité en Europe
+VOLLEY|Sport avec filet élevé|Interdit de laisser tomber le ballon|Beach-volley
+JUDO|Art martial japonais|Ceintures de couleur|Combat au sol
+ATHLETISME|Sport olympique|Course, saut, lancer|100 mètres
+GOLF|Sport avec clubs|Trous sur un parcours|Tiger Woods
+ESCALADE|Sport de grimpe|Mur ou falaise|Equipement de sécurité
+BOXING|Sport de combat|Gants rembourrés|Ring carré
+AVIRON|Sport nautique|Bateau long et étroit|Mouvement des rames
+BADMINTON|Sport avec volant|Raquette légère|Jeu en intérieur
 
 [Métiers]
-MEDECIN
-INFIRMIER
-ENSEIGNANT
-INGENIEUR
-ARCHITECTE
-CUISINIER
-MECANICIEN
-JOURNALISTE
-MUSICIEN
-PEINTRE
-PLOMBIER
-ELECTRICIEN
-AVOCAT
-POLICIER
-POMPIER
-
+MEDECIN|Soigne les malades|Porte une blouse blanche|Stéthoscope
+INFIRMIER|Aide le médecin|Travaille à l'hôpital|Pansements
+ENSEIGNANT|Fait cours aux élèves|Travaille à l'école|Tableau noir
+INGENIEUR|Conçoit des solutions|Diplôme bac+5|Calculs techniques
+ARCHITECTE|Dessine des bâtiments|Maquettes 3D|Compas
+CUISINIER|Prépare des plats|Travaille en restaurant|Toque blanche
+MECANICIEN|Répare les voitures|Caleçon maculé d'huile|Clé à molette
+JOURNALISTE|Écrit des articles|Micro et caméra|Liberté de la presse
+MUSICIEN|Joue d'un instrument|Concert live|Partitions
+PEINTRE|Artiste ou bâtiment|Pinceaux et toile|Nuancier de couleurs
+PLOMBIER|Répare les tuyaux|Clé anglaise|Problèmes de fuites
+ELECTRICIEN|Installe des circuits|Danger du courant|Tournevis testeur
+AVOCAT|Défend en justice|Robe noire|Plaidoirie
+POLICIER|Maintient l'ordre|Uniforme bleu|Matraque
+POMPIER|Éteint les incendies|Camion rouge|Casque
 
 [Véhicules]
-VOITURE
-CAMION
-MOTO
-VÉLO
-AVION
-BATEAU
-TRAIN
-BUS
-HELICOPTERE
-SCOOTER
-TAXI
-TRAMWAY
-MÉTRO
-TROTTINETTE
-KARTING
-
+VOITURE|4 roues moteur|Permis B|Volant
+CAMION|Gros véhicule|Transport de marchandises|16 roues
+MOTO|2 roues moteur|Casque obligatoire|Guidon
+VÉLO|2 roues musculaire|Pédales|Sonnette
+AVION|Transport aérien|Ailes et réacteurs|Hôtesse de l'air
+BATEAU|Flotte sur l'eau|Voile ou moteur|Ancre
+TRAIN|Roule sur des rails|Locomotive|Wagons
+BUS|Transport en commun|Arrêts fixes|Ticket
+HELICOPTERE|Aéronef à hélice|Décollage vertical|Rotor
+SCOOTER|Petite moto|Plancher plat|Petites roues
+TAXI|Voiture avec compteur|Toit lumineux|Course payante
+TRAMWAY|Transport sur rail|Électrique|Lignes aériennes
+MÉTRO|Transport souterrain|Quai|Plan de ligne
+TROTTINETTE|Engin à 2-3 roues|Manche à hauteur réglable|Frein au pied
+KARTING|Petite voiture de course|Circuit spécialisé|Casque intégral
 
 [Corps]
-TÊTE
-BRAS
-MAIN
-PIED
-DOS
-VENTRE
-COUDE
-GENOU
-OREILLE
-YEUX
-NEZ
-BOUCHE
-DOIGT
-ORTEIL
-COU
-
+TÊTE|Partie supérieure du corps|Contient le cerveau|Cheveux
+BRAS|Membre supérieur|Entre épaule et coude|Biceps
+MAIN|Extrémité du bras|5 doigts|Empreintes digitales
+PIED|Extrémité de la jambe|5 orteils|Semelle
+DOS|Partie postérieure du tronc|Colonne vertébrale|Muscles dorsaux
+VENTRE|Partie antérieure du tronc|Contient les intestins|Nombril
+COUDE|Articulation du bras|Permet la flexion|Peau plissée
+GENOU|Articulation de la jambe|Rotule|Sportifs le protègent
+OREILLE|Organe de l'ouïe|Piercing possible|Lobe
+YEUX|Organe de la vision|Paupières|Iris coloré
+NEZ|Organe de l'odorat|Narines|Éternuement
+BOUCHE|Organe du goût|Lèvres|Langue
+DOIGT|Partie de la main|Ongle|Empreinte unique
+ORTEIL|Partie du pied|Ongle|Petit orteil fragile
+COU|Partie entre tête et tronc|Colonne cervicale|Pomme d'Adam
 
 [Couleurs]
-ROUGE
-BLEU
-VERT
-JAUNE
-NOIR
-BLANC
-ORANGE
-VIOLET
-ROSE
-GRIS
-MARRON
-TURQUOISE
-BEIGE
-OR
-ARGENT
-
+ROUGE|Couleur du sang|Feu tricolore|Couleur chaude
+BLEU|Couleur du ciel|Mer et océan|Couleur froide
+VERT|Couleur des plantes|Feu tricolore|Couleur de l'espoir
+JAUNE|Couleur du soleil|Poussin|Couleur vive
+NOIR|Absence de couleur|Nuit|Couleur de deuil
+BLANC|Toutes les couleurs|Neige|Couleur pure
+ORANGE|Mélange rouge-jaune|Fruit homonyme|Couleur des Pays-Bas
+VIOLET|Mélange rouge-bleu|Couleur royale|Aubergine
+ROSE|Rouge pâle|Couleur des bonbons|Bébé fille
+GRIS|Mélange noir-blanc|Couleur du béton|Temps maussade
+MARRON|Couleur du chocolat|Terre|Châtaigne
+TURQUOISE|Bleu-vert clair|Pierre précieuse|Eaux tropicales
+BEIGE|Brun clair|Couleur neutre|Sable fin
+OR|Couleur métallique|Médaille première place|Bijoux
+ARGENT|Couleur métallique|Médaille deuxième place|Pièces de monnaie
 
 [École]
-CRAYON
-CARTABLE
-LIVRE
-CAHIER
-STYLO
-REGLE
-GOMME
-TABLIER
-TABLEAU
-CRISE
-BUREAU
-DICTIONNAIRE
-CALCULATRICE
-PUPITRE
-CLASSE
-
+CRAYON|Outils d'écriture|Mine de graphite|Gomme au bout
+CARTABLE|Sac d'écolier|Porté sur le dos|Bretelles
+LIVRE|Pages reliées|Contient des connaissances|Couverture
+CAHIER|Feuilles reliées|Carrés ou lignes|Couverture colorée
+STYLO|Écrit avec de l'encre|Bille ou plume|Capuchon
+REGLE|Outils de tracé|Graduation en cm|Bord droit
+GOMME|Efface les crayonnés|Caoutchouc|Odeur caractéristique
+TABLIER|Protège les vêtements|Porté en travaux pratiques|Bouts noués
+TABLEAU|Surface à écrire|Craie ou feutre|Effaçable
+CRISE|Manque de matériel|Grève|Manifestations
+BUREAU|Meuble de travail|Tiroirs|Plan de travail
+DICTIONNAIRE|Recueil de mots|Définitions|Ordre alphabétique
+CALCULATRICE|Machine à calculer|Touches numériques|Batterie
+PUPITRE|Tablette inclinée|Écoliers autrefois|En bois
+CLASSE|Groupe d'élèves|Salle de cours|Niveau scolaire
 
 [Technologie]
-ORDINATEUR
-TÉLÉPHONE
-TABLETTE
-CAMÉRA
-ÉCRAN
-CLAVIER
-SOURIS
-IMPRIMANTE
-CASQUE
-DRONE
-ROBOT
-LUNETTES
-MONTRE
-BATTERIE
-CÂBLE
+ORDINATEUR|Machine informatique|Clavier et écran|Processeur
+TÉLÉPHONE|Communication à distance|Portable ou fixe|Numéro
+TABLETTE|Appareil tactile|Plus grand qu'un téléphone|Applications
+CAMÉRA|Enregistre des images|Photos ou vidéos|Objectif
+ÉCRAN|Surface d'affichage|LCD ou OLED|Pixels
+CLAVIER|Périphérique de saisie|Touches azerty|Taper du texte
+SOURIS|Périphérique de pointage|Boutons et molette|Curseur
+IMPRIMANTE|Sortie papier|Encre ou laser|Feuilles
+CASQUE|Écouteurs sur la tête|Audio|Réalité virtuelle
+DRONE|Appareil volant|Télécommandé|Hélices
+ROBOT|Machine automatisée|Peut parler|Capteurs
+LUNETTES|Corrige la vision|Monture et verres|Myopie
+MONTRE|Donne l'heure|Bracelet|Analogique ou digitale
+BATTERIE|Source d'énergie|Rechargeable|Autonomie
+CÂBLE|Conducteur électrique|Connexion|Isolant
