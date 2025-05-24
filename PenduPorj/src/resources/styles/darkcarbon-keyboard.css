@@ -1,0 +1,34 @@
+/* DARK CYBERPUNK KEYBOARD SKIN */
+.keyboard-grid {
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+}
+
+.keyboard-grid .button {
+    -fx-background-color: #1a1a2e;
+    -fx-text-fill: #ff00ff;
+    -fx-border-color: #ff00ff;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-font-family: 'Consolas';
+    -fx-font-weight: bold;
+    -fx-effect: innershadow(three-pass-box, rgba(255,0,255,0.7), 5, 0.5, 0, 1);
+}
+
+.keyboard-grid .button:hover {
+    -fx-background-color: #2a2a3e;
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(255,0,255,0.9), 10, 0.5, 0, 0);
+}
+
+.keyboard-grid .button:pressed {
+    -fx-background-color: #0a0a1a;
+}
+
+.keyboard-grid .button:disabled {
+    -fx-background-color: #3a3a4e;
+    -fx-text-fill: #00ffff;
+    -fx-border-color: #00ffff;
+    -fx-effect: dropshadow(gaussian, rgba(0,255,255,0.7), 5, 0.5, 0, 0);
+}

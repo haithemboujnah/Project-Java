@@ -1,0 +1,28 @@
+/* PIRATE Wallpaper */
+.root {
+    -fx-background-color: #1a0a0a;
+    -fx-background-image: url("/resources/Images/store/pirate_theme.jpg");
+    -fx-background-size: cover;
+}
+
+.label {
+    -fx-text-fill: #ffcc00;
+    -fx-font-family: 'Old English Text MT';
+}
+
+.button {
+    -fx-background-color: #5a3a3a;
+    -fx-text-fill: #ffcc00;
+    -fx-border-color: #aa7733;
+    -fx-border-width: 2;
+}
+
+.button:hover {
+    -fx-background-color: #aa7733;
+}
+
+.word-display {
+    -fx-font-size: 24px;
+    -fx-text-fill: #ff5555;
+    -fx-effect: dropshadow(three-pass-box, black, 5, 0, 0, 0);
+}

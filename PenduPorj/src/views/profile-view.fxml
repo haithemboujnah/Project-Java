@@ -109,10 +109,14 @@
             </VBox>
         </VBox>
     </ScrollPane>
-
-    <HBox alignment="CENTER" spacing="20">
-        <Button text="Réinitialiser" onAction="#handleResetAccount" styleClass="reset-button"/>
-        <Button text="RETOUR AU JEU" onAction="#handleClose" styleClass="retour-button"/>
-    </HBox>
+    <VBox spacing="15" alignment="CENTER" styleClass="buttons-container">
+        <HBox alignment="CENTER" spacing="20">
+            <Button text="MODIFIER PROFIL" onAction="#handleUpdateProfile" styleClass="update-button"/>
+        </HBox>
+        <HBox alignment="CENTER" spacing="20">
+            <Button text="RÉINITIALISER" onAction="#handleResetAccount" styleClass="reset-button"/>
+            <Button text="RETOUR AU JEU" onAction="#handleClose" styleClass="retour-button"/>
+        </HBox>
+    </VBox>
 
 </VBox>

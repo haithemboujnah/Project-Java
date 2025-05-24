@@ -1,0 +1,28 @@
+.keyboard-grid {
+    -fx-background-color: transparent;
+    -fx-border-width: 3;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+
+.keyboard-grid .button {
+    -fx-background-color: linear-gradient(to bottom, #cce6ff, #6699ff);
+    -fx-text-fill: #003366;
+    -fx-font-weight: bold;
+    -fx-border-color: #003366;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-effect: dropshadow(gaussian, rgba(51,102,204,0.4), 5, 0.5, 0, 1);
+}
+
+.keyboard-grid .button:hover {
+    -fx-background-color: #b3d1ff;
+    -fx-text-fill: #001f4d;
+}
+
+.keyboard-grid .button:disabled {
+    -fx-opacity: 0.5;
+    -fx-text-fill: #a0a0a0;
+}

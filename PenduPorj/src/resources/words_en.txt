@@ -1,0 +1,169 @@
+[Animals]
+LION|The king of the jungle|Large feline|Has a mane
+TIGER|Striped feline|The largest of wild cats|Can swim
+ELEPHANT|The largest land animal|Has a trunk|Has large ears
+GIRAFFE|Long-necked animal|Has spots|The tallest land animal
+MONKEY|Imitates humans|Lives in trees|Has a prehensile tail
+ZEBRA|Black and white stripes|Lives in Africa|Part of the equine family
+HIPPOPOTAMUS|Large amphibious animal|Lives in rivers|Very thick skin
+FOX|Small cunning canine|Bushy tail|Hero of fables
+WOLF|Lives in packs|Howls at the moon|Ancestor of the dog
+BEAR|Hibernates in winter|Loves honey|Thick fur
+KANGAROO|Jumping Australian animal|Female has a pouch|Muscular tail
+PANDA|Eats bamboo|Black and white|WWF symbol
+PARROT|Talking bird|Colorful feathers|Can mimic sounds
+CROCODILE|Aquatic reptile|Powerful jaws|Scaly skin
+TURTLE|Has a shell|Lives a very long time|Moves slowly
+
+[Fruits]
+APPLE|Red or green|Keeps the doctor away|Grows on trees
+BANANA|Yellow fruit|Rich in potassium|Curved shape
+ORANGE|Citrus fruit|Full of vitamin C|Round and juicy
+STRAWBERRY|Red and small|Has tiny seeds outside|Sweet and fragrant
+PINEAPPLE|Spiky outside|Sweet and juicy inside|Tropical fruit
+MANGO|Sweet tropical fruit|Orange flesh|Very juicy
+GRAPES|Grow in clusters|Used to make wine|Can be green or purple
+PEACH|Fuzzy skin|Sweet and juicy|Has a hard pit
+WATERMELON|Green rind|Red flesh with seeds|Very refreshing
+CHERRY|Small and red|Has a pit inside|Often on cakes
+KIWI|Brown fuzzy skin|Green inside|Slightly tart
+LEMON|Very sour|Yellow citrus|Used in drinks
+COCONUT|Hard shell|Contains water and white flesh|Tropical tree fruit
+PLUM|Purple skin|Soft and sweet inside|Contains a pit
+AVOCADO|Green fruit|Creamy texture|Used in guacamole
+
+[Countries]
+FRANCE|Eiffel Tower|Famous for wine|Capital is Paris
+JAPAN|Land of the rising sun|Mount Fuji|Capital is Tokyo
+EGYPT|Pyramids and sphinx|River Nile|Capital is Cairo
+BRAZIL|Carnival festival|Amazon rainforest|Capital is Brasília
+CANADA|Maple leaf|Very cold winters|Capital is Ottawa
+GERMANY|Famous for cars|Black Forest|Capital is Berlin
+INDIA|Taj Mahal|Bollywood industry|Capital is New Delhi
+USA|Statue of Liberty|50 states|Capital is Washington D.C.
+CHINA|Great Wall|Most populous country|Capital is Beijing
+ITALY|Colosseum|Pizza and pasta|Capital is Rome
+RUSSIA|Largest country|Trans-Siberian Railway|Capital is Moscow
+AUSTRALIA|Kangaroos and koalas|Great Barrier Reef|Capital is Canberra
+MEXICO|Sombrero and tacos|Mayan pyramids|Capital is Mexico City
+SPAIN|Flamenco dance|La Sagrada Familia|Capital is Madrid
+TURKEY|Bridges Europe and Asia|Blue Mosque|Capital is Ankara
+
+[Sports]
+FOOTBALL|Played with a round ball|11 players per team|Popular worldwide
+BASKETBALL|Played with a hoop|Dribble and shoot|5 players per team
+TENNIS|Uses rackets|Can be played in singles or doubles|Played on courts
+SWIMMING|Involves water|Olympic sport|Different strokes
+VOLLEYBALL|Net in the center|Hit the ball over the net|6 players per team
+GOLF|Played on grass|Uses clubs and balls|Aim for the hole
+BOXING|Fighting sport|Uses gloves|In a ring
+CYCLING|Uses bicycles|Tour de France|Fast and enduring
+SKIING|Done on snow|Requires skis|Winter sport
+ATHLETICS|Track and field events|Includes running and jumping|Olympic category
+RUGBY|Like American football|Oval ball|Very physical
+SKATEBOARDING|Board with wheels|Extreme sport|Involves tricks
+WRESTLING|Physical combat sport|Includes grappling|Has weight classes
+SURFING|On ocean waves|Uses a surfboard|Balance is key
+BADMINTON|Fast-paced racket sport|Uses shuttlecock|Played indoors
+
+[Jobs]
+DOCTOR|Cures patients|Works in hospitals|Wears a white coat
+TEACHER|Educates students|Works in schools|Gives homework
+ENGINEER|Builds and designs|Solves technical problems|Creates machines
+POLICE OFFICER|Maintains order|Wears a uniform|Uses a badge
+FIREMAN|Fights fires|Uses a fire truck|Wears protective gear
+CHEF|Prepares meals|Works in kitchens|Wears a hat
+FARMER|Grows crops|Takes care of animals|Lives on a farm
+PILOT|Flies airplanes|Wears a uniform|Works in the sky
+LAWYER|Defends in court|Knows the law|Wears a suit
+ARTIST|Creates paintings or drawings|Uses imagination|Expressive job
+DENTIST|Takes care of teeth|Uses drills|Works in a clinic
+SCIENTIST|Conducts experiments|Loves discovery|Uses lab equipment
+ACTOR|Performs in movies|Plays different roles|Works in cinema
+SINGER|Uses their voice|Records songs|Performs on stage
+JOURNALIST|Writes news|Interviews people|Works with media
+
+[Vehicles]
+CAR|Four wheels|Runs on fuel|Common transport
+BUS|Transports many people|Stops at stations|Used in cities
+BICYCLE|Two wheels|Pedal-powered|Eco-friendly
+MOTORCYCLE|Two-wheeled engine|Faster than a bike|Used for quick transport
+AIRPLANE|Flies in the sky|Has wings|Used for long distances
+BOAT|Floats on water|Used in rivers or seas|Can be small or large
+TRAIN|Runs on rails|Used for long travel|Stops at stations
+TRUCK|Transports goods|Very large|Used by companies
+HELICOPTER|Flies with rotating blades|Can hover|Used for rescues
+SUBMARINE|Goes underwater|Used in military|Has periscopes
+SCOOTER|Small motor vehicle|Two wheels|City-friendly
+TRAM|Runs on tracks|Electric-powered|Urban public transport
+VAN|Bigger than a car|Used for transport|Has sliding doors
+TAXI|Paid ride service|Has a meter|Common in cities
+JET|Fast aircraft|Used for speed|Has powerful engines
+
+[Body]
+HEAD|Top part of the body|Contains brain|Has eyes and mouth
+EYE|Helps us see|Can be blue or brown|Very sensitive
+EAR|Used for hearing|Comes in pairs|Also helps with balance
+NOSE|Used to smell|Has nostrils|Can detect scents
+MOUTH|Used to eat and speak|Has teeth and tongue|Opens and closes
+HAND|Has fingers|Used to grab|On the arms
+FOOT|Used for walking|Has toes|At the bottom of legs
+HEART|Pumps blood|Vital organ|Beats regularly
+BRAIN|Controls the body|Very complex|In the skull
+LUNG|Used for breathing|Two in number|Fill with air
+STOMACH|Digests food|Located in the belly|Can growl
+BACK|Behind the body|Supports posture|Has a spine
+LEG|Used to walk|Has knee and ankle|Supports weight
+ARM|Used to lift|Has elbow and wrist|Connects hand and shoulder
+SKIN|Covers the body|Largest organ|Protects inside parts
+
+[Colors]
+RED|Color of fire|Means danger|Also love
+BLUE|Color of sky|Feels calm|Often favorite
+GREEN|Color of nature|Represents life|Very relaxing
+YELLOW|Color of sun|Very bright|Used for warnings
+BLACK|Color of night|Very dark|Symbol of elegance
+WHITE|Color of snow|Represents purity|Used in weddings
+ORANGE|Mix of red and yellow|Fruit name too|Vibrant and fun
+PURPLE|Royal color|Rare in nature|Mix of red and blue
+BROWN|Color of earth|Very neutral|Wood is this color
+PINK|Light red|Often used for love|Soft and sweet
+GRAY|Neutral color|Between black and white|Cool and modern
+GOLD|Shiny yellow|Symbol of wealth|Very precious
+SILVER|Shiny gray|Used in medals|Metallic color
+BEIGE|Pale brown|Neutral and calm|Used in interiors
+TURQUOISE|Blue-green mix|Tropical color|Seen in oceans
+
+[School]
+BOOK|Used to study|Has pages|Full of knowledge
+PEN|Used to write|Has ink|Held in hand
+PENCIL|Used to draw or write|Can be erased|Made of wood
+ERASER|Removes pencil marks|Rubber material|Handy tool
+RULER|Measures lines|Straight tool|Used in geometry
+NOTEBOOK|Used to take notes|Has lined pages|Used in school
+BAG|Carries supplies|Worn on back|Has many pockets
+BOARD|Teacher writes on it|Usually black or white|Seen in classrooms
+DESK|Students sit at it|Has surface for writing|Often with a chair
+CHAIR|Used to sit|Has backrest|Found in every class
+TEACHER|Gives lessons|Stands in front|Helps students learn
+STUDENT|Learns in class|Takes tests|Follows teacher
+EXAM|Tests knowledge|Has questions|Students prepare for it
+CLASSROOM|Place of learning|Has desks and board|Students gather here
+SCHOOLBELL|Signals break or start|Rings loudly|Used in school
+
+[Technology]
+COMPUTER|Processes data|Has keyboard and screen|Used everywhere
+PHONE|Makes calls|Fits in hand|Smart devices now
+TABLET|Touchscreen device|Larger than phone|Used for media
+MOUSE|Controls cursor|Used with PC|Has buttons
+KEYBOARD|Used to type|Many keys|Part of computer
+PRINTER|Prints documents|Uses paper and ink|Connected to PC
+INTERNET|Connects the world|Uses web browsers|Full of info
+ROBOT|Machine that acts|Can move or think|Used in factories
+DRONE|Flies in air|Has camera|Remote-controlled
+TV|Shows programs|Has screen|Remote-controlled
+LAPTOP|Portable computer|Has battery|Used on the go
+CAMERA|Takes photos|Has lens|Digital or analog
+SOFTWARE|Computer programs|Runs on systems|Used for tasks
+EMAIL|Electronic message|Fast communication|Used daily
+CHARGER|Provides power|Used for devices|Cable with plug

@@ -5,6 +5,7 @@ import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -14,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -21,12 +23,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.SVGPath;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.util.Pair;
 import models.User;
 import Services.SessionManager;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Optional;
 
 public class ProfileController {
@@ -98,28 +103,7 @@ public class ProfileController {
         this.hangmanStage = hangmanStage;
     }
 
-    private void createAvatar(String username) {
-        // Create avatar with user initials
-        String initials = username.substring(0, Math.min(2, username.length())).toUpperCase();
 
-        // Create background circle (or use the existing profileCircle)
-        Circle background = new Circle(50);
-        background.setFill(Color.web("#4b6cb7"));
-        background.setStroke(Color.WHITE);
-        background.setStrokeWidth(3);
-
-        // Add initials text
-        Label initialsLabel = new Label(initials);
-        initialsLabel.setStyle("-fx-font-size: 36; -fx-font-weight: bold; -fx-text-fill: white;");
-
-        // Clear and add to container
-        avatarContainer.getChildren().clear();
-        avatarContainer.getChildren().addAll(background, initialsLabel);
-
-        // Center the contents
-        StackPane.setAlignment(background, Pos.CENTER);
-        StackPane.setAlignment(initialsLabel, Pos.CENTER);
-    }
 
     private void setUserStats(User user) {
         int totalGames = user.getWins() + user.getLosses();
@@ -178,10 +162,10 @@ public class ProfileController {
         VBox textBox = new VBox(5);
         Label titleLabel = new Label(title);
         titleLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: " +
-                (unlocked ? "gold" : "#777") + "; -fx-font-size: 14px;");
+                (unlocked ? "gold" : "#777") + "; -fx-font-size: 14px; -fx-font-family: 'Comic Sans MS', cursive;");
 
         Label descLabel = new Label(description);
-        descLabel.setStyle("-fx-text-fill: " + (unlocked ? "#ddd" : "#666") + "; -fx-font-size: 12px;");
+        descLabel.setStyle("-fx-text-fill: " + (unlocked ? "#b1b1b1" : "#2e2e2e") + "; -fx-font-size: 12px; -fx-font-family: 'Comic Sans MS', cursive;");
         descLabel.setWrapText(true);
 
         textBox.getChildren().addAll(titleLabel, descLabel);
@@ -196,21 +180,25 @@ public class ProfileController {
         confirmation.setHeaderText(null);
         confirmation.setGraphic(null);
 
-        // Custom dialog content
+        // Custom dialog content with improved styling
         VBox content = new VBox(20);
         content.setAlignment(Pos.CENTER);
         content.setPadding(new Insets(20));
+        content.setStyle("-fx-background-color: #f9f9f9;");
 
-        ImageView warningIcon = new ImageView(new Image(getClass().getResourceAsStream("../resources/Images/login-arrow.png")));
-        warningIcon.setFitWidth(50);
-        warningIcon.setFitHeight(50);
+        ImageView warningIcon = new ImageView(new Image(getClass().getResourceAsStream("/resources/Images/hint.png")));
+        warningIcon.setFitWidth(60);
+        warningIcon.setFitHeight(60);
 
         Label warningLabel = new Label("Êtes-vous sûr de vouloir réinitialiser votre compte?\nToutes vos données seront perdues.");
-        warningLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #d32f2f; -fx-font-size: 14px;");
-        warningLabel.setAlignment(Pos.CENTER);
+        warningLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #d32f2f; -fx-font-size: 14px; -fx-alignment: CENTER;");
+        warningLabel.setTextAlignment(TextAlignment.CENTER);
 
         content.getChildren().addAll(warningIcon, warningLabel);
         confirmation.getDialogPane().setContent(content);
+
+        // Apply custom styles
+        confirmation.getDialogPane().getStylesheets().add(getClass().getResource("/resources/styles.css").toExternalForm());
 
         Optional<ButtonType> result = confirmation.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
@@ -272,30 +260,242 @@ public class ProfileController {
     private void createAvatar(User user) {
         avatarContainer.getChildren().clear();
 
-        // Try to load custom avatar if path exists
-        if (user.getAvatarId() != null && !user.getAvatarId().isEmpty()) {
-            try {
-                ImageView avatarImage = new ImageView(new Image(
-                        getClass().getResourceAsStream("../resources/Images/" + user.getAvatarId() + ".png")));
+        try {
+            // Chemin vers l'avatar dans le dossier store
+            String avatarPath = "/resources/Images/store/" + user.getAvatarId() + ".png";
+            InputStream imageStream = getClass().getResourceAsStream(avatarPath);
+
+            if (imageStream != null) {
+                ImageView avatarImage = new ImageView(new Image(imageStream));
                 avatarImage.setFitWidth(100);
                 avatarImage.setFitHeight(100);
-                avatarImage.setClip(new Circle(50, 50, 50));
-                avatarContainer.getChildren().add(avatarImage);
-                return;
-            } catch (Exception e) {
-                System.err.println("Could not load custom avatar, using default");
-            }
-        }
 
-        // Fallback to initials avatar
+                // Créer un masque circulaire
+                Circle clip = new Circle(50, 50, 50);
+                avatarImage.setClip(clip);
+
+                avatarContainer.getChildren().add(avatarImage);
+            } else {
+                // Fallback si l'avatar n'existe pas
+                createInitialsAvatar(user);
+            }
+        } catch (Exception e) {
+            System.err.println("Error loading avatar: " + e.getMessage());
+            createInitialsAvatar(user);
+        }
+    }
+
+    private void createInitialsAvatar(User user) {
         String initials = user.getUsername().substring(0, Math.min(2, user.getUsername().length())).toUpperCase();
+
         Circle background = new Circle(50, Color.web("#4b6cb7"));
+        background.setStroke(Color.WHITE);
+        background.setStrokeWidth(3);
+
         Label initialsLabel = new Label(initials);
         initialsLabel.setStyle("-fx-font-size: 36; -fx-font-weight: bold; -fx-text-fill: white;");
 
+        avatarContainer.getChildren().addAll(background, initialsLabel);
         StackPane.setAlignment(background, Pos.CENTER);
         StackPane.setAlignment(initialsLabel, Pos.CENTER);
-        avatarContainer.getChildren().addAll(background, initialsLabel);
+    }
+
+
+    @FXML
+    private void handleUpdateProfile() {
+        User user = SessionManager.getInstance().getCurrentUser();
+        if (user == null) return;
+
+        // Create a custom dialog with improved styling
+        Dialog<Pair<String, String>> dialog = new Dialog<>();
+        dialog.setTitle("Modifier le profil");
+        dialog.setHeaderText("Mise à jour du profil");
+
+        // Set a modern, clean style class
+        dialog.getDialogPane().getStyleClass().add("custom-dialog");
+
+        // Add application icon
+        Stage dialogStage = (Stage) dialog.getDialogPane().getScene().getWindow();
+        dialogStage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/Images/user-icon.png")));
+
+        // Set a modern, clean style class
+        dialog.getDialogPane().getStyleClass().add("custom-dialog");
+
+        // Set the button types
+        ButtonType updateButtonType = new ButtonType("Mettre à jour", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(updateButtonType, ButtonType.CANCEL);
+
+        // Create a styled GridPane with modern spacing
+        GridPane grid = new GridPane();
+        grid.setHgap(20);
+        grid.setVgap(20);
+        grid.setPadding(new Insets(25));
+        grid.setStyle("-fx-background-color: transparent;");
+
+        // Create modern input fields
+        TextField usernameField = new TextField(user.getUsername());
+        usernameField.getStyleClass().add("dialog-text-field");
+        usernameField.setPromptText("Nouveau nom d'utilisateur");
+        usernameField.setPrefWidth(250);
+
+        PasswordField passwordField = new PasswordField();
+        passwordField.getStyleClass().add("dialog-text-field");
+        passwordField.setPromptText("Nouveau mot de passe");
+        passwordField.setPrefWidth(250);
+
+        // Create modern labels with icons
+        HBox usernameBox = createFormField("Nom d'utilisateur", "user-icon.png");
+        HBox passwordBox = createFormField("Mot de passe", "password-icon.png");
+
+        grid.add(usernameBox, 0, 0);
+        grid.add(usernameField, 1, 0);
+        grid.add(passwordBox, 0, 1);
+        grid.add(passwordField, 1, 1);
+
+        // Add a modern graphic
+        ImageView dialogIcon = new ImageView(new Image(getClass().getResourceAsStream("/resources/Images/login-icon.jpg")));
+        dialogIcon.setFitWidth(80);
+        dialogIcon.setFitHeight(80);
+        dialog.setGraphic(dialogIcon);
+        dialog.getDialogPane().setContent(grid);
+
+        // Load custom stylesheet
+        dialog.getDialogPane().getStylesheets().add(
+                getClass().getResource("/resources/styles.css").toExternalForm()
+        );
+
+        // Request focus and select all text in username field
+        Platform.runLater(() -> {
+            usernameField.requestFocus();
+            usernameField.selectAll();
+        });
+
+        // Convert the result
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == updateButtonType) {
+                return new Pair<>(usernameField.getText(), passwordField.getText());
+            }
+            return null;
+        });
+
+        // Show and wait for response
+        Optional<Pair<String, String>> result = dialog.showAndWait();
+
+        result.ifPresent(usernamePassword -> {
+            String newUsername = usernamePassword.getKey();
+            String newPassword = usernamePassword.getValue();
+
+            // Validate inputs
+            if (newUsername.isEmpty()) {
+                showAlert("Erreur", "Le nom d'utilisateur ne peut pas être vide");
+                return;
+            }
+
+            boolean usernameChanged = !newUsername.equals(user.getUsername());
+            boolean passwordChanged = !newPassword.isEmpty();
+
+            if (!usernameChanged && !passwordChanged) {
+                showAlert("Information", "Aucune modification détectée");
+                return;
+            }
+
+            // Handle username change
+            if (usernameChanged) {
+                if (UserService.usernameExists(newUsername)) {
+                    showAlert("Erreur", "Ce nom d'utilisateur est déjà pris");
+                    return;
+                }
+
+                // Update username in database first
+                if (!UserService.updateUsername(user.getUsername(), newUsername)) {
+                    showAlert("Erreur", "Échec de la mise à jour du nom d'utilisateur");
+                    return;
+                }
+
+                // Then update local user object
+                user.updateUsername(newUsername);
+            }
+
+            // Handle password change
+            if (passwordChanged) {
+                if (!UserService.updatePassword(user.getUsername(), newPassword)) {
+                    showAlert("Erreur", "Échec de la mise à jour du mot de passe");
+                    return;
+                }
+                user.updatePassword(newPassword);
+            }
+
+            // Update session if username changed
+            if (usernameChanged) {
+                SessionManager.getInstance().setCurrentUser(user);
+            }
+
+            // Update UI
+            usernameLabel.setText(user.getUsername().toUpperCase());
+            createInitialsAvatar(user); // In case initials changed
+
+            showAlert("Succès", "Profil mis à jour avec succès");
+        });
+    }
+
+    private HBox createFormField(String labelText, String iconName) {
+        HBox hbox = new HBox(10);
+        hbox.setAlignment(Pos.CENTER_LEFT);
+
+        try {
+            ImageView icon = new ImageView(new Image(getClass().getResourceAsStream(
+                    "/resources/Images/" + iconName)));
+            icon.setFitWidth(20);
+            icon.setFitHeight(20);
+
+            Label label = new Label(labelText);
+            label.setStyle("-fx-font-weight: bold; -fx-text-fill: #147120; -fx-font-size: 14px; -fx-font-family: 'Comic Sans MS', cursive;");
+
+            hbox.getChildren().addAll(icon, label);
+        } catch (Exception e) {
+            // Fallback if icon not found
+            Label label = new Label(labelText);
+            label.setStyle("-fx-font-weight: bold; -fx-text-fill: #147120; -fx-font-size: 14px; -fx-font-family: 'Comic Sans MS', cursive;");
+            hbox.getChildren().add(label);
+        }
+        return hbox;
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+
+        // Apply custom style
+        alert.getDialogPane().getStyleClass().add("alert");
+
+        // Set stage icon
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/Images/user-icon.png")));
+
+        // Create custom graphic based on alert type
+        ImageView icon = new ImageView();
+        if (title.equals("Erreur")) {
+            icon.setImage(new Image(getClass().getResourceAsStream("/resources/Images/error-icon.png")));
+            alert.getDialogPane().setStyle("-fx-border-color: #d32f2f;");
+        } else if (title.equals("Succès")) {
+            icon.setImage(new Image(getClass().getResourceAsStream("/resources/Images/success-icon.png")));
+            alert.getDialogPane().setStyle("-fx-border-color: #2e7d32;");
+        } else {
+            icon.setImage(new Image(getClass().getResourceAsStream("/resources/Images/login-icon.png")));
+        }
+
+        icon.setFitWidth(48);
+        icon.setFitHeight(48);
+        alert.setGraphic(icon);
+
+        // Load custom stylesheet
+        alert.getDialogPane().getStylesheets().add(
+                getClass().getResource("/resources/styles.css").toExternalForm()
+        );
+
+        alert.showAndWait();
     }
 
     @FXML

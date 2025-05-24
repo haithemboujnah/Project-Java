@@ -1,0 +1,42 @@
+/* NATURE Wallpaper */
+.root {
+    -fx-background-color: #0a1a0a;
+    -fx-background-image: url("/resources/Images/store/nature_theme.jpg");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+.label {
+    -fx-text-fill: #004706;
+    -fx-font-family: 'Arial';
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 2, 0, 0, 1);
+}
+
+.button {
+    -fx-background-color: #2e7d32;
+    -fx-text-fill: white;
+    -fx-border-color: #81c784;
+    -fx-border-width: 2;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+.button:hover {
+    -fx-background-color: #388e3c;
+    -fx-cursor: hand;
+}
+
+.word-display {
+    -fx-font-size: 24px;
+    -fx-text-fill: #a5d6a7;
+    -fx-font-weight: bold;
+}
+
+.timer-label {
+    -fx-text-fill: #ffeb3b;
+    -fx-font-weight: bold;
+}
+
+.attempts-label {
+    -fx-text-fill: #ff8a65;
+}

@@ -68,7 +68,8 @@
     <!-- Footer -->
     <!-- Footer Section -->
     <VBox alignment="CENTER" spacing="5" styleClass="footer-container">
-        <Label text="© 2025 Le Pendu - Développé par équipe SoftHero" styleClass="footer-text"/>
+        <Label text="© 2025 Le Pendu - Développé par équipe Fel 5effa" styleClass="footer-text"/>
+        <Label text="( Haithem , Nihed , Nourhene )" styleClass="footer-text"/>
     </VBox>
 
 </VBox>

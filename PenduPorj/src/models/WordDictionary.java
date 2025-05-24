@@ -29,10 +29,10 @@ public class WordDictionary {
     public WordDictionary(InputStream wordStream) throws IOException {
         this.themedWords = new HashMap<>();
         this.random = new Random();
-        loadThemes(wordStream);
+        loadCate(wordStream);
     }
 
-    private void loadThemes(InputStream wordStream) throws IOException {
+    private void loadCate(InputStream wordStream) throws IOException {
         Scanner scanner = new Scanner(wordStream);
         String currentTheme = null;
 

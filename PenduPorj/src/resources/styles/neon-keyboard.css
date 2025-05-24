@@ -1,0 +1,37 @@
+/* Neon KEYBOARD SKIN */
+.keyboard-grid {
+    -fx-background-color: transparent;
+    -fx-border-width: 3;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+
+/* Target all buttons within the GridPane */
+.keyboard-grid .button {
+    -fx-background-color: #0f0f1a;
+    -fx-text-fill: #00fffc;
+    -fx-border-color: #00fffc;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,255,252,0.8), 10, 0, 0, 0);
+    -fx-padding: 5;
+}
+
+.keyboard-grid .button:hover {
+    -fx-background-color: #1a1a2e;
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,255,252,0.9), 15, 0, 0, 0);
+}
+
+.keyboard-grid .button:pressed {
+    -fx-background-color: #0a0a12;
+}
+
+.keyboard-grid .button:disabled {
+    -fx-opacity: 0.7;
+    -fx-text-fill: #ff0000;
+    -fx-effect: dropshadow(three-pass-box, rgba(255,0,0,0.8), 5, 0, 0, 0);
+}

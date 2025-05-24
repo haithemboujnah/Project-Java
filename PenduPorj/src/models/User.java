@@ -1,6 +1,9 @@
 package models;
 
 import org.bson.Document;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class User {
@@ -9,8 +12,8 @@ public class User {
     private static final int LOSS_COIN_PENALTY = 10;
     private static final int LEVEL_UP_COIN_BONUS = 20;
 
-    private final String username;
-    private final String password;
+    private String username;
+    private String password;
     private int wins;
     private int losses;
     private int coins;
@@ -20,6 +23,9 @@ public class User {
     private String avatarId;
     private int highestLevelReached;
     private int gamesPlayed;
+    private List<String> purchasedItems = new ArrayList<>();
+    private String currentKeyboardStyle;
+    private String currentWallpaper;
 
     public User(String username, String password) {
         this.username = Objects.requireNonNull(username, "Username cannot be null");
@@ -33,6 +39,7 @@ public class User {
         this.avatarId = "profile-icon";
         this.highestLevelReached = 1;
         this.gamesPlayed = 0;
+        this.currentWallpaper = "/resources/styles/default-wallpaper.css";
     }
 
     // In User.java
@@ -61,10 +68,28 @@ public class User {
         this.avatarId = doc.getString("avatarId");
         this.highestLevelReached = doc.getInteger("highestLevelReached", 1);
         this.gamesPlayed = doc.getInteger("gamesPlayed", 0);
+        if (doc.containsKey("purchasedItems")) {
+            this.purchasedItems = doc.getList("purchasedItems", String.class);
+        }
+        this.currentKeyboardStyle = doc.getString("currentKeyboardStyle");
+        this.currentWallpaper = doc.getString("currentBackground");
+    }
+
+    public String getCurrentKeyboardStyle() {
+        return currentKeyboardStyle;
+    }
+
+    public void setCurrentKeyboardStyle(String style) {
+        this.currentKeyboardStyle = style;
     }
 
     private int calculateXpToNextLevel() {
         return (level * 100) + 50;
+    }
+
+    public void changeAvatar(String newAvatarId) {
+        this.avatarId = newAvatarId; // Doit être une simple assignation
+        System.out.println("Avatar changé localement pour: " + newAvatarId);
     }
 
     public void addWin() {
@@ -119,10 +144,6 @@ public class User {
         }
     }
 
-    public void changeAvatar(String newAvatarId) {
-        this.avatarId = Objects.requireNonNull(newAvatarId, "Avatar ID cannot be null");
-    }
-
     public double getWinRate() {
         return gamesPlayed > 0 ? (double) wins / gamesPlayed * 100 : 0;
     }
@@ -139,7 +160,11 @@ public class User {
                 .append("xpToNextLevel", xpToNextLevel)
                 .append("avatarId", avatarId)
                 .append("highestLevelReached", highestLevelReached)
-                .append("gamesPlayed", gamesPlayed);
+                .append("gamesPlayed", gamesPlayed)
+                .append("purchasedItems", purchasedItems)
+                .append("currentKeyboardStyle", currentKeyboardStyle)
+                .append("currentBackground", currentWallpaper);
+
     }
 
     // Getters
@@ -156,6 +181,10 @@ public class User {
     public int getGamesPlayed() { return gamesPlayed; }
     public double getWinPercentage() { return getWinRate(); }
 
+    public void setAvatarId(String avatarId) {
+        this.avatarId = avatarId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -164,8 +193,38 @@ public class User {
         return username.equals(user.username);
     }
 
+    public void updateUsername(String newUsername) {
+        this.username = Objects.requireNonNull(newUsername, "Username cannot be null");
+    }
+
+    public void updatePassword(String newPassword) {
+        this.password = Objects.requireNonNull(newPassword, "Password cannot be null");
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(username);
+    }
+
+    public boolean hasPurchased(String itemId) {
+        return purchasedItems.contains(itemId);
+    }
+
+    public void addPurchasedItem(String itemId) {
+        if (!purchasedItems.contains(itemId)) {
+            purchasedItems.add(itemId);
+        }
+    }
+
+    public String getCurrentWallpaper() {
+        return currentWallpaper;
+    }
+
+    public void setCurrentWallpaper(String wallpaperPath) {
+        this.currentWallpaper = wallpaperPath;
+    }
+
+    public List<String> getPurchasedItems() {
+        return new ArrayList<>(purchasedItems);
     }
 }

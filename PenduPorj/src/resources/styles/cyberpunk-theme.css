@@ -1,0 +1,45 @@
+/* CYBERPUNK Wallpaper - FIXED VERSION */
+.root {
+    -fx-background-color: #1a0a1a;
+    -fx-background-image: url("/resources/Images/store/cyberpunk_theme.jpg");
+    -fx-background-size: cover;
+    -fx-effect: null;
+}
+
+.label {
+    -fx-text-fill: #00ffcc;
+    -fx-font-family: 'Consolas';
+    -fx-effect: dropshadow(gaussian, #ff00ff, 10, 0.5, 0, 0);
+}
+
+.button {
+    -fx-background-color: #330033;
+    -fx-text-fill: #00ffcc;
+    -fx-border-color: #ff00ff;
+    -fx-border-width: 2;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+.button:hover {
+    -fx-background-color: #660066;
+    -fx-text-fill: #ffffff;
+}
+
+.word-display {
+    -fx-font-size: 24px;
+    -fx-text-fill: #ff00ff;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, #00ffcc, 5, 0.5, 0, 0);
+}
+
+.timer-label {
+    -fx-text-fill: #ff5555;
+    /* Replaced glow with shadow effect */
+    -fx-effect: dropshadow(gaussian, rgba(255,85,85,0.8), 10, 0.5, 0, 0);
+}
+
+.hint-button {
+    -fx-background-color: #ff00ff;
+    -fx-text-fill: #000000;
+}

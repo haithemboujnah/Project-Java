@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -35,11 +36,13 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
 public class HangmanController {
+
     private Game game;
     private WordDictionary dictionary;
     private String currentTheme;
@@ -67,6 +70,9 @@ public class HangmanController {
     @FXML private Label xpLabel;
     @FXML private ProgressBar xpProgressBar;
     @FXML private ImageView profileIcon;
+    public ImageView storeIcon;
+    private String currentKeyboardStyle;
+    private String currentBackground;
 
     private List<ImageView> heartImages = new ArrayList<>();;
 
@@ -85,13 +91,39 @@ public class HangmanController {
         gc.setStroke(Color.BLACK);
         gc.setLineWidth(2);
 
+        // Initialiser l'avatar au démarrage
+        if (sessionManager.isLoggedIn()) {
+            updateProfileIcon();
+            User user = sessionManager.getCurrentUser();
+
+            if (user.getCurrentKeyboardStyle() != null && !user.getCurrentKeyboardStyle().isEmpty()) {
+                applyKeyboardStyle(user.getCurrentKeyboardStyle());
+            }
+
+            // Add listener for scene changes
+            keyboardGrid.sceneProperty().addListener((obs, oldScene, newScene) -> {
+                if (newScene != null && user.getCurrentWallpaper() != null) {
+                    // Small delay to ensurescene is fully initialized
+                    PauseTransition delay = new PauseTransition(Duration.millis(100));
+                    delay.setOnFinished(e -> applyBackground(user.getCurrentWallpaper()));
+                    delay.play();
+                }
+            });
+
+            // Apply immediately ifscene is already available
+            if (keyboardGrid.getScene() != null && user.getCurrentWallpaper() != null) {
+                applyBackground(user.getCurrentWallpaper());
+            }
+        }
+
+        SessionManager.getInstance().setHangmanController(this);
+
         // Initialize timer first
         setupTimer();
         updateTimerDisplay();
         bonusTimeLabel.setVisible(false);
         startGameWithTimer();
         initializeHearts();
-
         // Load sounds
         try {
             String winSoundPath = getClass().getResource("/resources/Sounds/win.mp3").toExternalForm();
@@ -155,6 +187,12 @@ public class HangmanController {
         }
     }
 
+    private void stopTimeWarningSound() {
+        if (timeWarningSoundPlayer != null) {
+            timeWarningSoundPlayer.stop();
+        }
+    }
+
     private void updateTimerDisplay() {
         int minutes = timeRemaining / 60;
         int seconds = timeRemaining % 60;
@@ -166,7 +204,7 @@ public class HangmanController {
         // Apply appropriate style and sounds
         if (timeRemaining <= 10) {
             timerLabel.getStyleClass().add("critical");
-            if (timeWarningSoundPlayer != null && timeRemaining <= 6) {
+            if (timeWarningSoundPlayer != null && timeRemaining <= 10) {
                 timeWarningSoundPlayer.play();
 
             }
@@ -301,10 +339,24 @@ public class HangmanController {
             if (game.getRemainingHints() > 0) {
                 hintButton.setDisable(true);
                 hintButton.setText("Indice (" + game.getRemainingHints() + ") - 20 pièces");
+                hintButton.setStyle("-fx-background-color: #4CAF50; " + // Green background
+                        "-fx-text-fill: white; " +
+                        "-fx-font-weight: bold; " +
+                        "-fx-background-radius: 5; " +
+                        "-fx-border-radius: 5; " +
+                        "-fx-border-color: #2E7D32; " +
+                        "-fx-border-width: 2;");
+            }
             } else {
                 hintButton.setDisable(true);
                 hintButton.setText("Pas d'indices disponibles");
-            }
+                hintButton.setStyle("-fx-background-color: #9E9E9E; " + // Gray background
+                        "-fx-text-fill: #616161; " +
+                        "-fx-font-weight: bold; " +
+                        "-fx-background-radius: 5; " +
+                        "-fx-border-radius: 5; " +
+                        "-fx-border-color: #757575; " +
+                        "-fx-border-width: 2;");
         }
     }
 
@@ -358,6 +410,13 @@ public class HangmanController {
 
         if (currentTheme == null) {
             currentTheme = dictionary.getAvailableThemes().iterator().next();
+        }
+
+        if (sessionManager.isLoggedIn()) {
+            User user = sessionManager.getCurrentUser();
+            if (user.getCurrentKeyboardStyle() != null) {
+                applyKeyboardStyle(user.getCurrentKeyboardStyle());
+            }
         }
 
         // Get difficulty from session
@@ -416,8 +475,28 @@ public class HangmanController {
         }
     }
 
+
+    public void updateProfileIcon() {
+        try {
+            User user = sessionManager.getCurrentUser();
+            String avatarPath = "/resources/Images/store/" + user.getAvatarId() + ".png";
+            InputStream imageStream = getClass().getResourceAsStream(avatarPath);
+
+            if (imageStream != null) {
+                profileIcon.setImage(new Image(imageStream));
+            } else {
+                // Fallback si l'image n'existe pas
+                profileIcon.setImage(new Image(
+                        getClass().getResourceAsStream("/resources/Images/profile-icon.png")));
+            }
+        } catch (Exception e) {
+            System.err.println("Error loading avatar: " + e.getMessage());
+        }
+    }
+
     @FXML
     private void handleProfileClick() {
+        stopTimeWarningSound();
         try {
             // Pause game timers
             if (countdownTimeline != null) {
@@ -431,7 +510,7 @@ public class HangmanController {
             // Get current stage
             Stage currentStage = (Stage) keyboardGrid.getScene().getWindow();
 
-            // Create new scene
+            // Create newscene
             Scene profileScene = new Scene(root);
             profileScene.getStylesheets().add(getClass().getResource("../resources/styles.css").toExternalForm());
 
@@ -466,6 +545,15 @@ public class HangmanController {
     public void resumeGame() {
         if (countdownTimeline != null) {
             countdownTimeline.play();
+        }
+        if (sessionManager.isLoggedIn()) {
+            User user = sessionManager.getCurrentUser();
+            if (user.getCurrentWallpaper() != null) {
+                // Small delay to ensurescene is ready
+                PauseTransition delay = new PauseTransition(Duration.millis(100));
+                delay.setOnFinished(e -> applyBackground(user.getCurrentWallpaper()));
+                delay.play();
+            }
         }
     }
 
@@ -588,6 +676,10 @@ public class HangmanController {
 
     private void playWinSound() {
         if (winSoundPlayer != null) {
+            // Stop other sounds first
+            if (loseSoundPlayer != null) loseSoundPlayer.stop();
+            if (timeWarningSoundPlayer != null) timeWarningSoundPlayer.stop();
+
             winSoundPlayer.stop();
             winSoundPlayer.play();
         }
@@ -595,6 +687,10 @@ public class HangmanController {
 
     private void playLoseSound() {
         if (loseSoundPlayer != null) {
+            // Stop other sounds first
+            if (winSoundPlayer != null) winSoundPlayer.stop();
+            if (timeWarningSoundPlayer != null) timeWarningSoundPlayer.stop();
+
             loseSoundPlayer.stop();
             loseSoundPlayer.play();
         }
@@ -603,14 +699,17 @@ public class HangmanController {
     private void setupKeyboard() {
         keyboardGrid.getChildren().clear();
 
+        // Add style class to the grid itself
+        keyboardGrid.getStyleClass().add("keyboard-grid");
+
         for (int row = 0; row < keyboardRows.length; row++) {
             String[] letters = keyboardRows[row].split(" ");
             for (int col = 0; col < letters.length; col++) {
-
                 final char letter = letters[col].charAt(0);
 
                 Button button = new Button(letters[col]);
                 button.setPrefSize(40, 40);
+                button.getStyleClass().add("button"); // Important - must match CSS selector
                 button.setOnAction(e -> handleLetterGuess(letter));
 
                 if (game != null && game.getGuessedLetters().contains(letter)) {
@@ -619,6 +718,11 @@ public class HangmanController {
 
                 keyboardGrid.add(button, col, row);
             }
+        }
+
+        // Re-apply current style
+        if (currentKeyboardStyle != null) {
+            applyKeyboardStyle(currentKeyboardStyle);
         }
     }
 
@@ -660,6 +764,19 @@ public class HangmanController {
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle(title);
         alert.setHeaderText(null);
+
+        alert.setOnHidden(e -> {
+            // Stop all sounds when dialog closes
+            if (winSoundPlayer != null) {
+                winSoundPlayer.stop();
+            }
+            if (loseSoundPlayer != null) {
+                loseSoundPlayer.stop();
+            }
+            if (timeWarningSoundPlayer != null) {
+                timeWarningSoundPlayer.stop();
+            }
+        });
 
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(
@@ -762,6 +879,7 @@ public class HangmanController {
 
     @FXML
     private void handleBackToThemes() {
+        stopTimeWarningSound();
         if (countdownTimeline != null) {
             countdownTimeline.stop();
         }
@@ -845,9 +963,150 @@ public class HangmanController {
         }
     }
 
+    public void updateAvatar(String newAvatarId) {
+        if (sessionManager.isLoggedIn()) {
+            User user = sessionManager.getCurrentUser();
+            user.changeAvatar(newAvatarId);
+            UserService.updateUserStats(user);
+            updateProfileIcon(); // Mettre à jour l'image
+        }
+    }
+
+    public String getCurrentKeyboardStyle() {
+        return currentKeyboardStyle;
+    }
+
+    public void applyKeyboardStyle(String cssPath) {
+        try {
+            keyboardGrid.getStylesheets().clear();
+            URL cssUrl = getClass().getResource(cssPath);
+            if (cssUrl != null) {
+                keyboardGrid.getStylesheets().add(cssUrl.toExternalForm());
+                this.currentKeyboardStyle = cssPath;
+
+                // Save to user profile
+                if (sessionManager.isLoggedIn()) {
+                    User user = sessionManager.getCurrentUser();
+                    user.setCurrentKeyboardStyle(cssPath);
+                    UserService.updateUserStats(user);
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Error applying keyboard style: " + e.getMessage());
+        }
+    }
+
+    public void applyBackground(String cssPath) {
+        try {
+            // Save the background preference regardless of scene availability
+            if (sessionManager.isLoggedIn()) {
+                User user = sessionManager.getCurrentUser();
+                user.setCurrentWallpaper(cssPath);
+                UserService.updateUserStats(user);
+            }
+
+
+            if (keyboardGrid.getScene() != null && keyboardGrid.getScene().getRoot() != null) {
+                Pane rootPane = (Pane) keyboardGrid.getScene().getRoot();
+                Platform.runLater(() -> {
+                    rootPane.getStylesheets().removeIf(s -> s.contains("background"));
+                    URL cssUrl = getClass().getResource(cssPath);
+                    if (cssUrl != null) {
+                        rootPane.getStylesheets().add(cssUrl.toExternalForm());
+                    } else {
+                        applyDefaultBackground();
+                    }
+                });
+            }
+        } catch (Exception e) {
+            System.err.println("Error applying background: " + e.getMessage());
+            e.printStackTrace();
+            applyDefaultBackground();
+        }
+    }
+
+    private void applyDefaultBackground() {
+        try {
+            String defaultPath = "/resources/styles/default-wallpaper.css";
+            if (keyboardGrid.getScene() != null && keyboardGrid.getScene().getRoot() != null) {
+                Pane rootPane = (Pane) keyboardGrid.getScene().getRoot();
+                rootPane.getStylesheets().removeIf(s -> s.contains("background"));
+
+                URL defaultUrl = getClass().getResource(defaultPath);
+                if (defaultUrl != null) {
+                    rootPane.getStylesheets().add(defaultUrl.toExternalForm());
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Error applying default background: " + e.getMessage());
+        }
+    }
+
+    public void applyHangmanStyle(String cssPath) {
+        try {
+            // Clear existing styles
+            hangmanCanvas.getStyleClass().clear();
+
+            // Add the new style
+            URL cssUrl = getClass().getResource(cssPath);
+            if (cssUrl != null) {
+                hangmanCanvas.getStyleClass().add("custom-hangman");
+            }
+        } catch (Exception e) {
+            System.err.println("Error loading hangman style: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void openStore() {
+        stopTimeWarningSound();
+        try {
+            if (countdownTimeline != null) {
+                countdownTimeline.pause();
+            }
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/store-view.fxml"));
+            Parent root = loader.load();
+
+            Stage storeStage = new Stage();
+            storeStage.initModality(Modality.APPLICATION_MODAL);
+            storeStage.initOwner(keyboardGrid.getScene().getWindow());
+            storeStage.setTitle("Boutique");
+            storeStage.setScene(new Scene(root));
+
+            storeStage.setOnHidden(e -> {
+                if (countdownTimeline != null) {
+                    countdownTimeline.play();
+                }
+                updateUserInfo();
+            });
+
+            storeStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void applySelectedAvatar(String avatarId) {
+        if (sessionManager.isLoggedIn()) {
+            User user = sessionManager.getCurrentUser();
+            user.changeAvatar(avatarId);
+            UserService.updateUserStats(user);
+
+            // Update profile icon
+            try {
+                Image avatarImage = new Image(getClass().getResourceAsStream("/resources/Images/" + avatarId + ".png"));
+                profileIcon.setImage(avatarImage);
+            } catch (Exception e) {
+                System.err.println("Error loading avatar image: " + e.getMessage());
+            }
+        }
+    }
+
     // Add logout button handler
     @FXML
     private void handleLogout() {
+        stopTimeWarningSound();
         if (countdownTimeline != null) {
             countdownTimeline.stop();
         }

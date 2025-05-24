@@ -1,5 +1,6 @@
 package Services;
 
+import controllers.HangmanController;
 import models.Difficulty;
 import models.User;
 
@@ -7,6 +8,7 @@ public class SessionManager {
     private static SessionManager instance;
     private User currentUser;
     private Difficulty currentDifficulty;
+    private HangmanController hangmanController;
 
     private SessionManager() {}
 
@@ -40,5 +42,13 @@ public class SessionManager {
 
     public Difficulty getCurrentDifficulty() {
         return currentDifficulty != null ? currentDifficulty : Difficulty.MEDIUM;
+    }
+
+    public void setHangmanController(HangmanController controller) {
+        this.hangmanController = controller;
+    }
+
+    public HangmanController getHangmanController() {
+        return hangmanController;
     }
 }

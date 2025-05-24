@@ -1,0 +1,31 @@
+/* SPACE Wallpaper */
+.root {
+    -fx-background-color: #0a0a1a;
+    -fx-background-image: url("/resources/Images/store/space_theme.jpg");
+    -fx-background-size: cover;
+}
+
+.label {
+    -fx-text-fill: #ffffff;
+    -fx-font-family: 'Arial Rounded MT Bold';
+}
+
+.button {
+    -fx-background-color: #3a3a5a;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #6e6eff;
+    -fx-border-width: 2;
+}
+
+.button:hover {
+    -fx-background-color: #6e6eff;
+}
+
+.word-display {
+    -fx-font-size: 24px;
+    -fx-text-fill: #6e6eff;
+}
+
+.timer-label {
+    -fx-text-fill: #ff5555;
+}
